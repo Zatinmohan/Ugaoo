@@ -6,6 +6,8 @@ class EnvironmentConfigManager {
 
   EnvironmentConfigManager(this._environmentConfig);
 
+  String get environmentName => _environmentConfig.name;
+
   EnvironmentConfig get environmentConfig => switch (_environmentConfig) {
         EnvironmentType.dev => DevEnvironmentConfig(),
         EnvironmentType.prod => ProdEnvironmentConfig(),

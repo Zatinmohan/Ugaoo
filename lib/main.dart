@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:ugaoo/core/environment/app_dependency_injection.dart';
 
 void main() {
+  AppDependencyInjection().registerCoreDependencies(appFlavor);
   runApp(const MyApp());
 }
 
