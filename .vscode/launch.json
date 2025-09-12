@@ -4,19 +4,19 @@
             "name": "dev",
             "type": "dart",
             "request": "launch",
-            "args": ["--flavor","dev"]
+            "args": ["--flavor","dev",]
         }, 
         {
             "name": "stg",
             "type": "dart",
             "request": "launch",
-            "args": ["--flavor","stg"]
+            "args": ["--flavor","stg",]
         }, 
         {
             "name": "prod",
             "type": "dart",
             "request": "launch",
-            "args": ["--flavor","prod"]
+            "args": ["--flavor","prod",]
         }
     ]
 }

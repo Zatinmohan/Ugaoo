@@ -1,7 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:ugaoo/core/environment/environment_config_manager.dart';
 import 'package:ugaoo/core/environment/environment_type.dart';
-import 'package:ugaoo/utilities/enum_utilities.dart';
+import 'package:ugaoo/utilities/enum_util.dart';
 
 final sl = GetIt.instance;
 

@@ -3,7 +3,9 @@ enum EnvironmentType {
   prod('Production'),
   stg('Staging');
 
-  const EnvironmentType(this.name);
+  const EnvironmentType(this.label);
 
-  final String name;
+  // Human-friendly display label. Use the enum's built-in `.name`
+  // for the identifier (dev/prod/stg).
+  final String label;
 }

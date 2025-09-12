@@ -33,19 +33,19 @@ android {
     }
     flavorDimensions += "Ugaoo"
     productFlavors {
-        create("production") {
+        create("prod") {
             dimension = "Ugaoo"
             applicationIdSuffix = ""
             manifestPlaceholders["applicationLabel"] = "Ugaoo"
         }
-        create("staging") {
-            dimension = "Ugaoo stg"
+        create("stg") {
+            dimension = "Ugaoo"
             applicationIdSuffix = ".stg"
             manifestPlaceholders["applicationLabel"] = "Ugaoo Stg"
         }
-        create("development") {
-            dimension = "Ugaoo dev"
-            applicationIdSuffix = ".dev"
+        create("dev") {
+            dimension = "Ugaoo"
+            applicationIdSuffix = ".development"
             manifestPlaceholders["applicationLabel"] = "Ugaoo Dev"
         }
     }

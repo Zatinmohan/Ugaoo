@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ugaoo/core/environment/app_dependency_injection.dart';
+import 'package:ugaoo/home_screen.dart';
+
+// Provided via: --dart-define=APP_FLAVOR=<dev|stg|prod>
 
 void main() {
   AppDependencyInjection().registerCoreDependencies(appFlavor);
@@ -17,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: Container(),
+      home: HomeScreen(),
     );
   }
 }
