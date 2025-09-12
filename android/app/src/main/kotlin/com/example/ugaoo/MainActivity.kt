@@ -1,4 +1,4 @@
-package com.example.ugaoo
+package `in`.co.ugaoo
 
 import io.flutter.embedding.android.FlutterActivity
 
