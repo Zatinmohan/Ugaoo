@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ugaoo/core/environment/app_dependency_injection.dart';
+import 'package:ugaoo/core/global_di/app_dependency_injection.dart';
 import 'package:ugaoo/core/environment/environment_config_manager.dart';
 
 class HomeScreen extends StatelessWidget {
