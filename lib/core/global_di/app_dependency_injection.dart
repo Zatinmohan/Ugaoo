@@ -5,9 +5,14 @@ import 'package:ugaoo/utilities/enum_util.dart';
 
 part 'app_flavor_di.dart';
 
-final sl = GetIt.instance;
+/// [sl] is the singleton instance of [GetIt]
+final GetIt sl = GetIt.instance;
 
+/// [AppDependencyInjection] is a class that registers the core dependencies
 class AppDependencyInjection {
+  /// This registers the core dependencies
+  ///
+  /// [flavor] is the flavor of the app
   void registerCoreDependencies(String? flavor) {
     try {
       _registerAppFlavorDependencies(flavor: flavor);
