@@ -22,7 +22,12 @@ class GoRouterHandler implements RouterHandleable<GoRouter> {
   @override
   Future<void> configure() async {
     _goRouter = GoRouter(
-      routes: _getRoutes(routes: AppRoutes().routes),
+      routes: AppRoutes()
+          .routes
+          .map(
+            (route) => _getRoutes(route: route),
+          )
+          .toList(),
       navigatorKey: _rootNavigatorKey,
       debugLogDiagnostics: true,
       onException: (context, state, router) {
@@ -36,45 +41,45 @@ class GoRouterHandler implements RouterHandleable<GoRouter> {
     );
   }
 
-  List<RouteBase> _getRoutes({required List<appRoutes.RouteData> routes}) {
-    return routes
-        .map(
-          (route) => GoRoute(
-            path: route.path,
-            builder: route.builder != null
-                ? (context, state) => route.builder!.call(
-                      context,
-                      RouteParams(
-                        pathParam: state.pathParameters,
-                        queryParam: state.uri.queryParameters,
-                        extras: state.extra,
-                      ),
-                    )
-                : null,
-            pageBuilder: route.pageBuilder != null
-                ? (context, state) => route.pageBuilder!.call(
-                      context,
-                      RouteParams(
-                        pathParam: state.pathParameters,
-                        queryParam: state.uri.queryParameters,
-                        extras: state.extra,
-                      ),
-                    )
-                : null,
-            redirect: route.redirect != null
-                ? (context, state) => route.redirect!.call(
-                      context,
-                      RouteParams(
-                        pathParam: state.pathParameters,
-                        queryParam: state.uri.queryParameters,
-                        extras: state.extra,
-                      ),
-                    )
-                : null,
-            routes: _getRoutes(routes: route.children ?? []),
-          ),
-        )
-        .toList();
+  GoRoute _getRoutes({required appRoutes.RouteData route}) {
+    return GoRoute(
+      path: route.path,
+      name: route.name,
+      builder: route.builder == null
+          ? null
+          : (context, state) => route.builder!(
+                context,
+                RouteParams(
+                  pathParam: state.pathParameters,
+                  queryParam: state.uri.queryParameters,
+                  extras: state.extra,
+                ),
+              ),
+      pageBuilder: route.pageBuilder == null
+          ? null
+          : (context, state) => route.pageBuilder!(
+                context,
+                RouteParams(
+                  pathParam: state.pathParameters,
+                  queryParam: state.uri.queryParameters,
+                  extras: state.extra,
+                ),
+              ),
+      redirect: route.redirect == null
+          ? null
+          : (context, state) => route.redirect!(
+                context,
+                RouteParams(
+                  pathParam: state.pathParameters,
+                  queryParam: state.uri.queryParameters,
+                  extras: state.extra,
+                ),
+              ),
+      routes: route.children
+              ?.map((childRoute) => _getRoutes(route: childRoute))
+              .toList() ??
+          [],
+    );
   }
 
   @override

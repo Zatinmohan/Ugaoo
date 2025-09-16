@@ -1,5 +1,9 @@
 enum Routes {
-  root(path: '/', name: 'home');
+  root(path: RoutesName.root, name: RoutesName.root),
+  second(
+    path: '${RoutesName.root}${RoutesName.second}',
+    name: '${RoutesName.root}${RoutesName.second}',
+  );
 
   const Routes({
     required this.path,
@@ -11,5 +15,6 @@ enum Routes {
 }
 
 class RoutesName {
-  static const home = '/';
+  static const root = '/';
+  static const second = 'second';
 }
