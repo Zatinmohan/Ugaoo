@@ -1,9 +1,13 @@
+import 'package:flutter/widgets.dart';
 import 'package:get_it/get_it.dart';
 import 'package:ugaoo/core/environment/environment_config_manager.dart';
 import 'package:ugaoo/core/environment/environment_type.dart';
+import 'package:ugaoo/core/router/handler/go_router_handler.dart';
+import 'package:ugaoo/core/router/manager/router_manager.dart';
 import 'package:ugaoo/utilities/enum_util.dart';
 
 part 'app_flavor_di.dart';
+part 'app_route_dependencies.dart';
 
 /// [sl] is the singleton instance of [GetIt]
 final GetIt sl = GetIt.instance;
@@ -16,6 +20,7 @@ class AppDependencyInjection {
   void registerCoreDependencies(String? flavor) {
     try {
       _registerAppFlavorDependencies(flavor: flavor);
+      _registerRouterDependencies();
     } catch (error) {
       rethrow;
     }

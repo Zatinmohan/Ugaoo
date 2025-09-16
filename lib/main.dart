@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ugaoo/core/global_di/app_di.dart';
-import 'package:ugaoo/home_screen.dart';
+import 'package:ugaoo/core/router/manager/router_manager.dart';
 
 void main() {
   AppDependencyInjection().registerCoreDependencies(appFlavor);
@@ -13,12 +13,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Ugaoo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: HomeScreen(),
+      routerConfig: sl.get<RouterManager>().routerConfig,
     );
   }
 }
