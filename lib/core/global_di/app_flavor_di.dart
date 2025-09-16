@@ -1,4 +1,4 @@
-part of 'app_dependency_injection.dart';
+part of 'app_di.dart';
 
 void _registerAppFlavorDependencies({required String? flavor}) {
   if (flavor?.isEmpty ?? true) throw Exception('Flavor is required');
