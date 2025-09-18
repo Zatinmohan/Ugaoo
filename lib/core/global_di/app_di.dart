@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get_it/get_it.dart';
 import 'package:ugaoo/core/environment/environment_config_manager.dart';
 import 'package:ugaoo/core/environment/environment_type.dart';
+import 'package:ugaoo/core/logger/log.dart';
 import 'package:ugaoo/core/router/handler/go_router_handler.dart';
 import 'package:ugaoo/core/router/manager/router_manager.dart';
 import 'package:ugaoo/utilities/enum_util.dart';
@@ -22,6 +23,7 @@ class AppDependencyInjection {
       _registerAppFlavorDependencies(flavor: flavor);
       _registerRouterDependencies();
     } catch (error) {
+      log.e('Error registering core dependencies: $error');
       rethrow;
     }
   }

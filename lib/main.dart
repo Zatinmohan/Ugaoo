@@ -5,6 +5,7 @@ import 'package:ugaoo/core/router/manager/router_manager.dart';
 
 void main() {
   AppDependencyInjection().registerCoreDependencies(appFlavor);
+  
   runApp(const MyApp());
 }
 

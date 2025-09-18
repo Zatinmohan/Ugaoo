@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
+import 'package:ugaoo/core/logger/log.dart';
 import 'package:ugaoo/core/router/handler/router_handleable.dart';
 
 import 'package:ugaoo/core/router/models/route_data.dart' as appRoutes;
@@ -29,7 +30,7 @@ class GoRouterHandler implements RouterHandleable<GoRouter> {
           )
           .toList(),
       navigatorKey: _rootNavigatorKey,
-      debugLogDiagnostics: true,
+      // debugLogDiagnostics: false,
       onException: (context, state, router) {
         // TODO(Jatin): Need to add proper logs
       },
@@ -39,6 +40,8 @@ class GoRouterHandler implements RouterHandleable<GoRouter> {
       },
       initialLocation: Routes.root.path,
     );
+
+    log.i('GoRouter Configured');
   }
 
   GoRoute _getRoutes({required appRoutes.RouteData route}) {
