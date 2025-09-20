@@ -3,12 +3,16 @@ import 'package:go_router/go_router.dart';
 import 'package:ugaoo/core/logger/log.dart';
 import 'package:ugaoo/core/router/handler/router_handleable.dart';
 
-import 'package:ugaoo/core/router/models/route_data.dart' as appRoutes;
+import 'package:ugaoo/core/router/models/route_data.dart' as app_route;
 import 'package:ugaoo/core/router/models/route_params.dart';
 import 'package:ugaoo/core/router/models/routes_name.dart';
 import 'package:ugaoo/modules/app_core/route_config/app_routes.dart';
 
+/// [GoRouterHandler] is a class that implements the [RouterHandleable]
+/// interface and uses the [GoRouter] package to handle the router.
 class GoRouterHandler implements RouterHandleable<GoRouter> {
+  /// Constructor of [GoRouterHandler] that requires:
+  /// - [GlobalKey<NavigatorState>] root navigator key
   GoRouterHandler({
     required GlobalKey<NavigatorState> rootNavigatorKey,
   }) : _rootNavigatorKey = rootNavigatorKey;
@@ -44,7 +48,7 @@ class GoRouterHandler implements RouterHandleable<GoRouter> {
     log.i('GoRouter Configured');
   }
 
-  GoRoute _getRoutes({required appRoutes.RouteData route}) {
+  GoRoute _getRoutes({required app_route.RouteData route}) {
     return GoRoute(
       path: route.path,
       name: route.name,

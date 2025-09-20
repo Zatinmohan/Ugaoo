@@ -5,9 +5,9 @@ import 'package:ugaoo/core/storage/constants/storage_keys.dart';
 import 'package:ugaoo/core/storage/handler/key_value_handler/key_value_pair_handleable.dart';
 import 'package:ugaoo/core/storage/model/storage_failure.dart';
 
-/// [SecureStorageHandler] is a class that implements the [KeyValuePairHandleable]
-/// interface and uses the [FlutterSecureStorage] package
-/// to store and retrieve data.
+/// [SecureStorageHandler] is a class that implements the
+/// [KeyValuePairHandleable] interface and uses the [FlutterSecureStorage]
+/// package to store and retrieve data.
 class SecureStorageHandler extends KeyValuePairHandleable {
   late final FlutterSecureStorage _secureStorage;
   @override

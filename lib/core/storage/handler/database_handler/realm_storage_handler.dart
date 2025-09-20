@@ -5,8 +5,8 @@ import 'package:ugaoo/core/storage/handler/database_handler/database_handleable.
 import 'package:ugaoo/core/storage/model/storage_failure.dart';
 import 'package:ugaoo/modules/app_core/realm_config/example.dart';
 
-/// [RealmStorageHandler] is a class that implements the [DatabaseHandleable] interface
-/// and uses the [Realm] package to store and retrieve data.
+/// [RealmStorageHandler] is a class that implements the [DatabaseHandleable]
+/// interface and uses the [Realm] package to store and retrieve data.
 class RealmStorageHandler implements DatabaseHandleable<RealmObject> {
   late final Realm _realm;
   @override

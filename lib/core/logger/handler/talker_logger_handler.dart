@@ -2,8 +2,8 @@ import 'package:talker/talker.dart';
 import 'package:ugaoo/core/logger/handler/logger_handleable.dart';
 import 'package:ugaoo/core/logger/model/logger_model.dart';
 
-/// [TalkerLoggerHandler] is a class that implements the [LoggerHandleable] interface
-/// and uses the [Talker] package to log messages.
+/// [TalkerLoggerHandler] is a class that implements the [LoggerHandleable]
+/// interface and uses the [Talker] package to log messages.
 class TalkerLoggerHandler implements LoggerHandleable {
   /// Factory constructor returns the single instance
   factory TalkerLoggerHandler() => _instance;
