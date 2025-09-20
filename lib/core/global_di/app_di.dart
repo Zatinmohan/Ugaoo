@@ -4,6 +4,8 @@ import 'package:ugaoo/core/cache/cache_handler.dart';
 import 'package:ugaoo/core/environment/environment_config_manager.dart';
 import 'package:ugaoo/core/environment/environment_type.dart';
 import 'package:ugaoo/core/logger/log.dart';
+import 'package:ugaoo/core/package_info/handlers/package_info_handler.dart';
+import 'package:ugaoo/core/package_info/package_info_manager.dart';
 import 'package:ugaoo/core/router/handler/go_router_handler.dart';
 import 'package:ugaoo/core/router/manager/router_manager.dart';
 import 'package:ugaoo/core/storage/handler/database_handler/realm_storage_handler.dart';
@@ -16,6 +18,7 @@ import 'package:ugaoo/utilities/enum_util.dart';
 part 'app_flavor_di.dart';
 part 'app_route_dependencies.dart';
 part 'storage_di.dart';
+part 'package_info_di.dart';
 
 /// [sl] is the singleton instance of [GetIt]
 final GetIt sl = GetIt.instance;
@@ -30,6 +33,7 @@ class AppDependencyInjection {
       _registerAppFlavorDependencies(flavor: flavor);
       _registerRouterDependencies();
       _registerStorageDependencies();
+      _registerPackageInfoDependencies();
     } catch (error) {
       log.e('Error registering core dependencies: $error');
       rethrow;
