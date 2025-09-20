@@ -1,9 +1,7 @@
-import 'package:fpdart/fpdart.dart';
 import 'package:ugaoo/core/logger/logger.dart';
 import 'package:ugaoo/core/storage/handler/database_handler/database_handleable.dart';
 import 'package:ugaoo/core/storage/handler/key_value_handler/key_value_pair_handleable.dart';
 import 'package:ugaoo/core/storage/handler/storage_handleable.dart';
-import 'package:ugaoo/core/storage/model/storage_failure.dart';
 
 /// [StorageManager] is a class that manages the storage of the app.
 class StorageManager {
