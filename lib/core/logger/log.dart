@@ -21,4 +21,5 @@ class _LoggerFacade {
       _logger.debug(message, config);
 }
 
+/// [log] is the singleton instance of '_LoggerFacade'
 final log = _LoggerFacade();
