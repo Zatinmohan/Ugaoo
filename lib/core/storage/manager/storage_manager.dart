@@ -1,5 +1,9 @@
+import 'package:fpdart/fpdart.dart';
+import 'package:ugaoo/core/logger/logger.dart';
 import 'package:ugaoo/core/storage/handler/database_handler/database_handleable.dart';
 import 'package:ugaoo/core/storage/handler/key_value_handler/key_value_pair_handleable.dart';
+import 'package:ugaoo/core/storage/handler/storage_handleable.dart';
+import 'package:ugaoo/core/storage/model/storage_failure.dart';
 
 /// [StorageManager] is a class that manages the storage of the app.
 class StorageManager {
@@ -22,12 +26,22 @@ class StorageManager {
   Future<void> configure() async {
     await Future.wait(
       [
-        _realmStorageHandler.configure().run(),
-        _sharedPreferenceHandler.configure().run(),
-        _secureStorageHandler.configure().run(),
+        _initHandlers(_realmStorageHandler),
+        _initHandlers(_sharedPreferenceHandler),
+        _initHandlers(_secureStorageHandler),
       ],
       eagerError: true,
     );
+  }
+
+  Future<void> _initHandlers(StorageHandleable handlers) async {
+    final result = await handlers.configure().run();
+
+    if (result.isLeft()) {
+      result.mapLeft(
+        (error) => log.e(error.toString()),
+      );
+    }
   }
 
   /// This method returns the realm storage handler
