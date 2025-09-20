@@ -5,7 +5,7 @@ import 'package:ugaoo/core/logger/log.dart';
 import 'package:ugaoo/core/router/models/routes_name.dart';
 import 'package:ugaoo/core/storage/manager/storage_manager.dart';
 import 'package:ugaoo/modules/app_core/extensions/router_extension.dart';
-import 'package:ugaoo/modules/app_core/realm_config/example.dart';
+import 'package:ugaoo/modules/app_core/config/realm_config/example.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
