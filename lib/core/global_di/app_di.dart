@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:get_it/get_it.dart';
+import 'package:ugaoo/core/cache/cache_handler.dart';
 import 'package:ugaoo/core/environment/environment_config_manager.dart';
 import 'package:ugaoo/core/environment/environment_type.dart';
 import 'package:ugaoo/core/logger/log.dart';
@@ -9,6 +10,7 @@ import 'package:ugaoo/core/storage/handler/database_handler/realm_storage_handle
 import 'package:ugaoo/core/storage/handler/key_value_handler/secure_storage_handler.dart';
 import 'package:ugaoo/core/storage/handler/key_value_handler/shared_preference_handler.dart';
 import 'package:ugaoo/core/storage/manager/storage_manager.dart';
+import 'package:ugaoo/modules/app_core/config/cache_config/cache_config.dart';
 import 'package:ugaoo/utilities/enum_util.dart';
 
 part 'app_flavor_di.dart';

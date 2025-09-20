@@ -6,7 +6,7 @@ import 'package:ugaoo/core/router/handler/router_handleable.dart';
 import 'package:ugaoo/core/router/models/route_data.dart' as app_route;
 import 'package:ugaoo/core/router/models/route_params.dart';
 import 'package:ugaoo/core/router/models/routes_name.dart';
-import 'package:ugaoo/modules/app_core/route_config/app_routes.dart';
+import 'package:ugaoo/modules/app_core/config/route_config/app_routes.dart';
 
 /// [GoRouterHandler] is a class that implements the [RouterHandleable]
 /// interface and uses the [GoRouter] package to handle the router.
