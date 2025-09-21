@@ -56,10 +56,10 @@ class FirebaseRemoteConfigHandler implements RemoteConfigHandleable {
   ) {
     return TaskEither.tryCatch(() async {
       final result = switch (T) {
-        const (String) => _firebaseRemoteConfig.getString(key.name),
-        const (int) => _firebaseRemoteConfig.getInt(key.name),
-        const (double) => _firebaseRemoteConfig.getDouble(key.name),
-        const (bool) => _firebaseRemoteConfig.getBool(key.name),
+        const (String) => _firebaseRemoteConfig.getString(key.key),
+        const (int) => _firebaseRemoteConfig.getInt(key.key),
+        const (double) => _firebaseRemoteConfig.getDouble(key.key),
+        const (bool) => _firebaseRemoteConfig.getBool(key.key),
         _ => throw const RemoteConfigFailure(
             message: 'The current type is not supported',
             title: 'Unsupported type',
