@@ -1,7 +1,8 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:ugaoo/core/package_info/models/package_info_failures.dart';
 
-/// [PackageInfoHandleable] is an abstract class that represents the package info handleable interface.
+/// [PackageInfoHandleable] is an abstract class that represents the package 
+/// info handleable interface.
 abstract class PackageInfoHandleable {
   /// This method is used to configure the package info handleable.
   TaskEither<PackageInfoFailure, void> configure();
