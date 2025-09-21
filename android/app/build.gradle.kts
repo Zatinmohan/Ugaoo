@@ -2,12 +2,13 @@ plugins {
     id("com.android.application")
     id("kotlin-android")
     id("dev.flutter.flutter-gradle-plugin")
+    id("com.google.gms.google-services")
 }
 
 android {
     namespace = "in.co.ugaoo"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    // ndkVersion = flutter.ndkVersion
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -20,7 +21,7 @@ android {
 
     defaultConfig {
         applicationId = "in.co.ugaoo"
-        minSdk = flutter.minSdkVersion
+        minSdk = 23
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
@@ -45,7 +46,7 @@ android {
         }
         create("dev") {
             dimension = "Ugaoo"
-            applicationIdSuffix = ".development"
+            applicationIdSuffix = ".dev"
             manifestPlaceholders["applicationLabel"] = "Ugaoo Dev"
         }
     }
@@ -53,4 +54,9 @@ android {
 
 flutter {
     source = "../.."
+}
+
+dependencies {
+   implementation(platform("com.google.firebase:firebase-bom:34.3.0"))
+   implementation("com.google.firebase:firebase-analytics")
 }

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "340532853810",
+    "project_id": "ugaoo-stg",
+    "storage_bucket": "ugaoo-stg.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:340532853810:android:d8ef0709029a1d424c902b",
+        "android_client_info": {
+          "package_name": "in.co.ugaoo.stg"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUCDeS36tREWqGfKcf9le6tGo7OvDAOb4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
