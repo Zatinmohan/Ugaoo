@@ -11,8 +11,16 @@ void _registerAppFlavorDependencies({required String? flavor}) {
     log.e('Invalid flavor: $flavor');
     throw Exception('Invalid flavor: $flavor');
   }
-
-  final environmentConfigManager = EnvironmentConfigManager(environment);
-  sl.registerSingleton<EnvironmentConfigManager>(environmentConfigManager);
+  final remoteConfigManager = sl<RemoteConfigManager>();
+  final environmentConfigManager = EnvironmentConfigManager(
+    environment,
+    remoteConfigManager,
+  );
+  sl.registerSingletonAsync<EnvironmentConfigManager>(
+    () async => environmentConfigManager,
+    dependsOn: [
+      RemoteConfigManager,
+    ],
+  );
   log.i('App Flavor Registered - ${environment.name}');
 }

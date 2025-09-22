@@ -9,20 +9,17 @@ import 'package:ugaoo/core/package_info/models/package_info_failures.dart';
 class PackageInfoHandler implements PackageInfoHandleable {
   late final PackageInfo _packageInfo;
   @override
-  TaskEither<PackageInfoFailure, void> configure() =>
-      TaskEither.tryCatch(() async {
-        _packageInfo = await PackageInfo.fromPlatform();
-        log.i('Package Info Configured');
-      }, (e, s) {
-        log.e(
-          e.toString(),
-          config: LoggerModel(exception: e, stackTrace: s),
-        );
-        return PackageInfoFailure(
-          message: e.toString(),
-          title: 'Error configuring Package Info',
-        );
-      });
+  Future<void> configure() async {
+    try {
+      _packageInfo = await PackageInfo.fromPlatform();
+      log.i('Package Info Configured');
+    } on Exception catch (error, stackTrace) {
+      log.e(
+        error.toString(),
+        config: LoggerModel(exception: error, stackTrace: stackTrace),
+      );
+    }
+  }
 
   @override
   TaskEither<PackageInfoFailure, String> get appName => TaskEither.tryCatch(
