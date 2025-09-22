@@ -1,0 +1,32 @@
+{
+    "environment": [
+      {
+        "key": "stg",
+        "base_url": "staging.api.com",
+        "send_timeout": 10,
+        "receive_timeout": 10,
+        "connect_timeout": 10
+      },
+      {
+        "key": "dev",
+        "base_url": "staging.api.com",
+        "send_timeout": 10,
+        "receive_timeout": 10,
+        "connect_timeout": 10
+      },
+      {
+        "key": "prod",
+        "base_url": "api.com",
+        "send_timeout": 10,
+        "receive_timeout": 10,
+        "connect_timeout": 10
+      },
+      {
+        "key": "default",
+        "base_url": "dev.api.com",
+        "send_timeout": 10,
+        "receive_timeout": 10,
+        "connect_timeout": 10
+      }
+    ]
+  }

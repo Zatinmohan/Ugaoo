@@ -1,6 +1,7 @@
 import 'package:ugaoo/utilities/failure.dart';
 
-/// [PermissionFailure] is a class that represents the failure for the permission.
+/// [PermissionFailure] is a class that represents the failure 
+/// for the permission.
 class PermissionFailure extends Failure {
   /// Constructor of [PermissionFailure] that requires:
   /// - [message] is the message of the failure

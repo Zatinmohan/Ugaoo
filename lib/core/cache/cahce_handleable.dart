@@ -8,7 +8,7 @@ import 'package:ugaoo/core/cache/models/cache_file_model.dart';
 /// the cache handleable interface
 abstract class CacheHandleable {
   /// This method is used to configure the cache handleable.
-  TaskEither<CacheFailure, void> configure();
+  Future<void> configure();
 
   /// This function is used to store the file
   /// from the Remote [url] and store it in the cache.

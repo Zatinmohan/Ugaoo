@@ -1,6 +1,7 @@
 import 'package:ugaoo/utilities/failure.dart';
 
-/// [PackageInfoFailure] is a class that represents the failure for the package info.
+/// [PackageInfoFailure] is a class that represents the failure 
+/// for the package info.
 class PackageInfoFailure extends Failure {
   /// Constructor of [PackageInfoFailure] that requires:
   /// - [message] is the message of the failure
