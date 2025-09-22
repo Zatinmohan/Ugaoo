@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 // [EnvironmentConfigDto] is a class that represents the
 // environment configuration dto.
+=======
+>>>>>>> 81b9466 (Update dependencies and refactor code: add new packages including archive, color, dartx, and others; modify cache handling and environment configuration for improved async support; enhance package_info management; remove unused enum_util file.)
 // ignore_for_file: public_member_api_docs
 
 import 'package:freezed_annotation/freezed_annotation.dart';
