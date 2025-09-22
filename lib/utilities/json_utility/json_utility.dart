@@ -43,8 +43,10 @@ class JsonUtility {
   TaskEither<JsonUtilityFailure, Map<String, dynamic>>
       loadJsonFromRemoteConfig({
     required RemoteConfigKey key,
+    String? fallbackAssetPath,
   }) {
-    return sl<RemoteConfigManager>()
+    return sl
+        .get<RemoteConfigManager>()
         .read<String>(key)
         .mapLeft(
           (failure) => JsonUtilityFailure(
@@ -52,16 +54,11 @@ class JsonUtility {
             title: failure.title,
           ),
         )
-        .chainEither(
-      (jsonString) {
-        return Either.tryCatch(
-          () => jsonDecode(jsonString) as Map<String, dynamic>,
-          (error, stackTrace) => JsonUtilityFailure(
-            message: 'Failed to parse JSON: $error',
-            title: 'JSON Parsing Error',
-          ),
+        .flatMap((fileName) => loadJson(path: fileName))
+        .orElse(
+          (failure) => fallbackAssetPath != null
+              ? loadJson(path: fallbackAssetPath)
+              : TaskEither.left(failure),
         );
-      },
-    );
   }
 }
