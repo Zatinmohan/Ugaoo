@@ -18,7 +18,6 @@ class RemoteConfigManager {
   Future<void> configure() async {
     await Future.wait(
       _handlers.map(_configureHandler),
-      eagerError: true,
     );
   }
 
@@ -38,28 +37,15 @@ class RemoteConfigManager {
   }) {
     if (handler != null) return handler.read<T>(key);
 
-    return TaskEither.tryCatch(() async {
-      var value = none<T>();
-      for (final handler in _handlers) {
-        final result = await handler.read<T>(key).run();
-        if (result.isRight()) {
-          value = result.getRight();
-          break;
-        }
-      }
-      return value.getOrElse(
-        () => throw const RemoteConfigFailure(
-          message: 'No handler found for key',
-          title: 'Error reading Remote Config',
+    return _handlers.fold<TaskEither<RemoteConfigFailure, T>>(
+      TaskEither.left(
+        RemoteConfigFailure(
+          message: 'No Hnadler as the ${key.key}',
+          title: 'Key - ${key.key} not found',
         ),
-      );
-    }, (e, s) {
-      log.e(e.toString(), config: LoggerModel(exception: e, stackTrace: s));
-      return RemoteConfigFailure(
-        message: e.toString(),
-        title: 'Error reading Remote Config',
-      );
-    });
+      ),
+      (acc, h) => acc.orElse((_) => h.read<T>(key)),
+    );
   }
 
   /// This method reads the value from the remote config manager
@@ -68,22 +54,13 @@ class RemoteConfigManager {
       readFrom<T extends Object, H extends RemoteConfigHandleable>(
     RemoteConfigKey key,
   ) {
-    return TaskEither.tryCatch(() async {
-      final handler = _handlers.whereType<H>().firstOrNull;
-      if (handler == null) {
-        throw const RemoteConfigFailure(
-          message: 'Handler not found',
-          title: 'Error reading Remote Config',
-        );
-      }
-      final result = await handler.read<T>(key).run();
-      return result.getOrElse((failure) => throw failure);
-    }, (e, s) {
-      log.e(e.toString(), config: LoggerModel(exception: e, stackTrace: s));
-      return RemoteConfigFailure(
-        message: e.toString(),
+    final handler = _handlers.whereType<H>().firstOrNull;
+    return TaskEither.fromNullable(
+      handler,
+      () => const RemoteConfigFailure(
+        message: 'Specified handler not found',
         title: 'Error reading Remote Config',
-      );
-    });
+      ),
+    ).flatMap((handler) => handler.read<T>(key));
   }
 }

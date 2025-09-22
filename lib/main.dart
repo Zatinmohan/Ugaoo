@@ -3,9 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:ugaoo/core/global_di/app_di.dart';
 import 'package:ugaoo/core/router/manager/router_manager.dart';
 
-void main() {
-  AppDependencyInjection().registerCoreDependencies(appFlavor);
-  
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await AppDependencyInjection().registerCoreDependencies(appFlavor);
+
   runApp(const MyApp());
 }
 

@@ -5,6 +5,7 @@ import 'package:ugaoo/core/cache/cache_handler.dart';
 import 'package:ugaoo/core/environment/environment_config_manager.dart';
 import 'package:ugaoo/core/environment/environment_type.dart';
 import 'package:ugaoo/core/logger/log.dart';
+import 'package:ugaoo/core/logger/model/logger_model.dart';
 import 'package:ugaoo/core/package_info/handlers/package_info_handler.dart';
 import 'package:ugaoo/core/package_info/package_info_manager.dart';
 import 'package:ugaoo/core/remote_config/handlers/firebase_remote_config_handler.dart';
@@ -16,7 +17,7 @@ import 'package:ugaoo/core/storage/handler/key_value_handler/secure_storage_hand
 import 'package:ugaoo/core/storage/handler/key_value_handler/shared_preference_handler.dart';
 import 'package:ugaoo/core/storage/manager/storage_manager.dart';
 import 'package:ugaoo/modules/app_core/config/cache_config/cache_config.dart';
-import 'package:ugaoo/utilities/enum_util.dart';
+import 'package:ugaoo/utilities/basic_utility.dart';
 
 part 'app_flavor_di.dart';
 part 'app_route_dependencies.dart';
@@ -32,11 +33,11 @@ class AppDependencyInjection {
   /// This registers the core dependencies
   ///
   /// [flavor] is the flavor of the app
-  void registerCoreDependencies(String? flavor) {
+  Future<void> registerCoreDependencies(String? flavor) async {
     try {
+      await _registerFirebaseServiceDependencies();
       _registerAppFlavorDependencies(flavor: flavor);
       _registerRouterDependencies();
-      _registerFirebaseServiceDependencies();
       _registerStorageDependencies();
       _registerPackageInfoDependencies();
     } catch (error) {

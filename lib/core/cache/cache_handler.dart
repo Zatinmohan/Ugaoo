@@ -7,7 +7,7 @@ import 'package:ugaoo/core/cache/models/cache_config_model.dart';
 import 'package:ugaoo/core/cache/models/cache_failures.dart';
 import 'package:ugaoo/core/cache/models/cache_file_model.dart';
 import 'package:ugaoo/core/logger/logger.dart';
-import 'package:ugaoo/utilities/enum_util.dart';
+import 'package:ugaoo/utilities/basic_utility.dart';
 
 /// [CacheHandler] is a class that implements the [CacheHandleable] interface
 /// and uses the [CacheManager] package to store and retrieve data.
@@ -19,29 +19,27 @@ class CacheHandler extends CacheHandleable {
   }) : _cacheConfig = cacheConfig;
   final CacheConfigModel? _cacheConfig;
   late CacheManager _cacheClient;
+
   @override
-  TaskEither<CacheFailure, void> configure() {
-    return TaskEither.tryCatch(() async {
+  Future<void> configure() async {
+    try {
       if (_cacheConfig == null) {
         _cacheClient = DefaultCacheManager();
         return;
       }
+
       _cacheClient = CacheManager(Config(
         _cacheConfig.cacheName,
         maxNrOfCacheObjects: _cacheConfig.maxCacheSize,
         stalePeriod: _cacheConfig.cacheDurationPeriod,
       ));
       log.i('Cache Handler Configured');
-    }, (e, s) {
-      log.i(
-        'Error configuring cache',
-        config: LoggerModel(exception: e, stackTrace: s),
+    } on Exception catch (error, stackTrace) {
+      log.e(
+        error.toString(),
+        config: LoggerModel(exception: error, stackTrace: stackTrace),
       );
-      return CacheFailure(
-        message: e.toString(),
-        title: 'Error configuring cache',
-      );
-    });
+    }
   }
 
   @override

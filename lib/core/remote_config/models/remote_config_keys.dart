@@ -1,7 +1,10 @@
 /// [RemoteConfigKey] is a class that represents the remote configuration keys.
 enum RemoteConfigKey {
   /// The key string associated with the remote configuration value.
-  testKey('TEST');
+  testKey('TEST'),
+
+  /// The key string associated with the remote configuration value.
+  networkEnvConfig('NETWORK_ENV_CONFIG');
 
   /// Constructor of [RemoteConfigKey] that requires:
   /// - [key] is the key string associated with the remote configuration value.

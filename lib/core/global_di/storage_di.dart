@@ -17,7 +17,7 @@ void _registerStorageDependencies() {
       final cacheHandler = CacheHandler(
         cacheConfig: cacheConfig.cacheConfigModel,
       );
-      await cacheHandler.configure().run();
+      await cacheHandler.configure();
       return cacheHandler;
     });
 }

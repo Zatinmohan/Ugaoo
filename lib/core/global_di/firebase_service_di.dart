@@ -1,6 +1,6 @@
 part of 'app_di.dart';
 
-void _registerFirebaseServiceDependencies() {
+Future<void> _registerFirebaseServiceDependencies() async {
   sl
     ..registerSingletonAsync<FirebaseApp>(() async {
       final firebaseApp = await Firebase.initializeApp();
@@ -14,10 +14,28 @@ void _registerFirebaseServiceDependencies() {
             FirebaseRemoteConfigHandler(),
           ],
         );
-        await remoteConfigManager.configure();
-        log.i('Firebase Service Dependencies Registered');
+
+        try {
+          await remoteConfigManager
+              .configure()
+              .timeout(const Duration(seconds: 1));
+          log.i('Firebase Service Dependencies Registered');
+        } on Exception catch (e, s) {
+          log.e(
+            'Error registering Firebase Remote Config Dependencies',
+            config: LoggerModel(
+              exception: e,
+              stackTrace: s,
+            ),
+          );
+        }
+
         return remoteConfigManager;
       },
-      dependsOn: [FirebaseApp],
+      dependsOn: [
+        FirebaseApp,
+      ],
     );
+
+  await sl.allReady();
 }
