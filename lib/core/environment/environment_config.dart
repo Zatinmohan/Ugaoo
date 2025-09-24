@@ -28,8 +28,27 @@ class EnvironmentConfig {
   final RemoteConfigManager remoteConfigManager;
 
   /// The network configuration of the environment
+  EnvironmentNetworkConfig? _cachedEnvNetworkConfig;
+
+  /// The network configuration of the environment
+  Future<EnvironmentNetworkConfig> get networkConfig async {
+    if (_cachedEnvNetworkConfig != null) {
+      return _cachedEnvNetworkConfig!;
+    }
+
+    final result = await _networkConfig.run();
+    result.fold(
+      (l) {
+        log.e(l.message, config: LoggerModel(exception: l));
+      },
+      (r) => _cachedEnvNetworkConfig = r,
+    );
+    return _cachedEnvNetworkConfig!;
+  }
+
+  /// The network configuration of the environment
   TaskEither<EnvironmentConfigFailure, EnvironmentNetworkConfig>
-      get networkConfig => JsonUtility()
+      get _networkConfig => JsonUtility()
               .loadJsonFromRemoteConfig(
             key: RemoteConfigKey.networkEnvConfig,
             fallbackAssetPath: Assets.data.json.networkEnvConfig,
