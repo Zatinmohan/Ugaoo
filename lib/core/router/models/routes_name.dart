@@ -1,3 +1,6 @@
+// This is an enum that represents the routes configuration.
+// ignore_for_file: public_member_api_docs
+
 enum Routes {
   root(path: RoutesName.root, name: RoutesName.root),
   second(

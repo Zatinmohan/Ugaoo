@@ -1,5 +1,3 @@
-// ignore_for_file: one_member_abstracts
-
 import 'package:fpdart/fpdart.dart';
 import 'package:ugaoo/core/file_picker/models/file_picker_failure.dart';
 import 'package:ugaoo/core/file_picker/models/selected_file_model.dart';

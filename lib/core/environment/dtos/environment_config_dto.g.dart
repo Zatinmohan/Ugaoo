@@ -9,7 +9,7 @@ part of 'environment_config_dto.dart';
 EnvironmentConfigDto _$EnvironmentConfigDtoFromJson(
         Map<String, dynamic> json) =>
     EnvironmentConfigDto(
-      networkConfig: (json['networkConfig'] as List<dynamic>)
+      networkConfig: (json['environment'] as List<dynamic>)
           .map((e) =>
               EnvironmentNetworkConfigDto.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -18,7 +18,7 @@ EnvironmentConfigDto _$EnvironmentConfigDtoFromJson(
 Map<String, dynamic> _$EnvironmentConfigDtoToJson(
         EnvironmentConfigDto instance) =>
     <String, dynamic>{
-      'networkConfig': instance.networkConfig,
+      'environment': instance.networkConfig,
     };
 
 EnvironmentNetworkConfigDto _$EnvironmentNetworkConfigDtoFromJson(

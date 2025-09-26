@@ -1,3 +1,5 @@
+// [EnvironmentConfigDto] is a class that represents the
+// environment configuration dto.
 // ignore_for_file: public_member_api_docs
 
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -13,6 +15,7 @@ class EnvironmentConfigDto {
   factory EnvironmentConfigDto.fromJson(Map<String, dynamic> json) =>
       _$EnvironmentConfigDtoFromJson(json);
 
+  @JsonKey(name: 'environment')
   final List<EnvironmentNetworkConfigDto> networkConfig;
 
   Map<String, dynamic> toJson() => _$EnvironmentConfigDtoToJson(this);

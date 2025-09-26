@@ -17,7 +17,10 @@ void _registerAppFlavorDependencies({required String? flavor}) {
     remoteConfigManager,
   );
   sl.registerSingletonAsync<EnvironmentConfigManager>(
-    () async => environmentConfigManager,
+    () async {
+      unawaited(environmentConfigManager.environmentConfig.networkConfig);
+      return environmentConfigManager;
+    },
     dependsOn: [
       RemoteConfigManager,
     ],

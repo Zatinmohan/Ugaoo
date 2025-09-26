@@ -7,7 +7,6 @@ import 'package:ugaoo/core/environment/models/environment_network_config.dart';
 import 'package:ugaoo/core/logger/logger.dart';
 import 'package:ugaoo/core/remote_config/models/remote_config_keys.dart';
 import 'package:ugaoo/core/remote_config/remote_config_manager.dart';
-import 'package:ugaoo/gen/assets.gen.dart';
 import 'package:ugaoo/utilities/json_utility/json_utility.dart';
 
 /// [EnvironmentConfig] is a class that represents
@@ -28,11 +27,34 @@ class EnvironmentConfig {
   final RemoteConfigManager remoteConfigManager;
 
   /// The network configuration of the environment
+  EnvironmentConfigModel? _cachedEnvNetworkConfig;
+
+  /// The network configuration of the environment
+  Future<EnvironmentNetworkConfig> get networkConfig async {
+    if (_cachedEnvNetworkConfig != null) {
+      return _cachedEnvNetworkConfig! as EnvironmentNetworkConfig;
+    }
+
+    final result = await _networkConfig.run();
+    result.fold(
+      (l) {
+        log.e(l.message, config: LoggerModel(exception: l));
+      },
+      (r) => _cachedEnvNetworkConfig = r,
+    );
+    return _cachedEnvNetworkConfig! as EnvironmentNetworkConfig;
+  }
+
+  /// The network configuration of the environment
+  EnvironmentFeatureConfigModel get featureConfig =>
+      EnvironmentFeatureConfigModel.fromType(type);
+
+  /// The network configuration of the environment
   TaskEither<EnvironmentConfigFailure, EnvironmentNetworkConfig>
-      get networkConfig => JsonUtility()
+      get _networkConfig => JsonUtility()
               .loadJsonFromRemoteConfig(
             key: RemoteConfigKey.networkEnvConfig,
-            fallbackAssetPath: Assets.data.json.networkEnvConfig,
+            fallbackAssetPath: 'assets/data/json/network_env_config.json',
           )
               .mapLeft(
             (failure) {
