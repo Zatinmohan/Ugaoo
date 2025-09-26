@@ -15,6 +15,7 @@ class EnvironmentConfigDto {
   factory EnvironmentConfigDto.fromJson(Map<String, dynamic> json) =>
       _$EnvironmentConfigDtoFromJson(json);
 
+  @JsonKey(name: 'environment')
   final List<EnvironmentNetworkConfigDto> networkConfig;
 
   Map<String, dynamic> toJson() => _$EnvironmentConfigDtoToJson(this);

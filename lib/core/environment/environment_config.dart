@@ -7,7 +7,6 @@ import 'package:ugaoo/core/environment/models/environment_network_config.dart';
 import 'package:ugaoo/core/logger/logger.dart';
 import 'package:ugaoo/core/remote_config/models/remote_config_keys.dart';
 import 'package:ugaoo/core/remote_config/remote_config_manager.dart';
-import 'package:ugaoo/gen/assets.gen.dart';
 import 'package:ugaoo/utilities/json_utility/json_utility.dart';
 
 /// [EnvironmentConfig] is a class that represents
@@ -55,7 +54,7 @@ class EnvironmentConfig {
       get _networkConfig => JsonUtility()
               .loadJsonFromRemoteConfig(
             key: RemoteConfigKey.networkEnvConfig,
-            fallbackAssetPath: Assets.data.json.networkEnvConfig,
+            fallbackAssetPath: 'assets/data/json/network_env_config.json',
           )
               .mapLeft(
             (failure) {

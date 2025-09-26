@@ -12,7 +12,7 @@ import 'package:ugaoo/utilities/json_utility/failure/json_utility_failure.dart';
 /// from a file or remote config.
 class JsonUtility {
   /// This method loads JSON from assets or from a local file.
-  TaskEither<JsonUtilityFailure, Map<String, dynamic>> loadJson({
+  TaskEither<JsonUtilityFailure, Map<String, dynamic>> loadJsonFromAsset({
     required String path,
     bool showLog = false,
   }) {
@@ -38,6 +38,20 @@ class JsonUtility {
     });
   }
 
+  /// This method loads JSON from a raw string.
+  Either<JsonUtilityFailure, Map<String, dynamic>> loadRawJson(String rawJson) {
+    return Either.tryCatch(() {
+      final json = jsonDecode(rawJson) as Map<String, dynamic>;
+      return json;
+    }, (e, s) {
+      log.e(e.toString(), config: LoggerModel(exception: e, stackTrace: s));
+      return JsonUtilityFailure(
+        message: e.toString(),
+        title: 'Error decoding JSON',
+      );
+    });
+  }
+
   /// This method loads JSON from remote config.
   /// [key] is the key of the remote config.
   TaskEither<JsonUtilityFailure, Map<String, dynamic>>
@@ -49,15 +63,21 @@ class JsonUtility {
         .get<RemoteConfigManager>()
         .read<String>(key)
         .mapLeft(
-          (failure) => JsonUtilityFailure(
-            message: failure.message,
-            title: failure.title,
-          ),
+          (failure) {
+            log.e(
+              failure.message,
+              config: LoggerModel(exception: failure),
+            );
+            return JsonUtilityFailure(
+              message: failure.message,
+              title: failure.title,
+            );
+          },
         )
-        .flatMap((fileName) => loadJson(path: fileName))
+        .flatMap((rawJson) => TaskEither.fromEither(loadRawJson(rawJson)))
         .orElse(
           (failure) => fallbackAssetPath != null
-              ? loadJson(path: fallbackAssetPath)
+              ? loadJsonFromAsset(path: fallbackAssetPath)
               : TaskEither.left(failure),
         );
   }
