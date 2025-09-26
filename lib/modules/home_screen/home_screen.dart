@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:ugaoo/core/environment/environment_config_manager.dart';
 import 'package:ugaoo/core/global_di/app_di.dart';
-import 'package:ugaoo/core/logger/log.dart';
 import 'package:ugaoo/core/remote_config/models/remote_config_keys.dart';
 import 'package:ugaoo/core/remote_config/remote_config_manager.dart';
 import 'package:ugaoo/core/router/models/routes_name.dart';
-import 'package:ugaoo/core/storage/manager/storage_manager.dart';
 import 'package:ugaoo/modules/app_core/extensions/router_extension.dart';
-import 'package:ugaoo/modules/app_core/config/realm_config/example.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

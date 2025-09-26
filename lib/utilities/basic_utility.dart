@@ -19,8 +19,8 @@ extension EnumX<T extends Enum> on Iterable<T> {
 /// [ListX] is an extension on [List<T>] that provides a method to
 /// get the first element that matches the predicate or null if not found
 extension ListX<T> on List<T> {
-  /// This returns the first element that matches the predicate or null if not found
-  ///
+  /// This returns the first element that matches the predicate or null
+  /// if not found.
   /// [test] is the predicate to match the element
   ///
   /// Returns the element or null if not found
