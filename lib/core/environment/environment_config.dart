@@ -28,12 +28,12 @@ class EnvironmentConfig {
   final RemoteConfigManager remoteConfigManager;
 
   /// The network configuration of the environment
-  EnvironmentNetworkConfig? _cachedEnvNetworkConfig;
+  EnvironmentConfigModel? _cachedEnvNetworkConfig;
 
   /// The network configuration of the environment
   Future<EnvironmentNetworkConfig> get networkConfig async {
     if (_cachedEnvNetworkConfig != null) {
-      return _cachedEnvNetworkConfig!;
+      return _cachedEnvNetworkConfig! as EnvironmentNetworkConfig;
     }
 
     final result = await _networkConfig.run();
@@ -43,8 +43,12 @@ class EnvironmentConfig {
       },
       (r) => _cachedEnvNetworkConfig = r,
     );
-    return _cachedEnvNetworkConfig!;
+    return _cachedEnvNetworkConfig! as EnvironmentNetworkConfig;
   }
+
+  /// The network configuration of the environment
+  EnvironmentFeatureConfigModel get featureConfig =>
+      EnvironmentFeatureConfigModel.fromType(type);
 
   /// The network configuration of the environment
   TaskEither<EnvironmentConfigFailure, EnvironmentNetworkConfig>

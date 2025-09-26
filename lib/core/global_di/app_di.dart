@@ -6,6 +6,7 @@ import 'package:get_it/get_it.dart';
 import 'package:ugaoo/core/cache/cache_handler.dart';
 import 'package:ugaoo/core/environment/environment_config_manager.dart';
 import 'package:ugaoo/core/environment/environment_type.dart';
+import 'package:ugaoo/core/environment/models/environment_network_config.dart';
 import 'package:ugaoo/core/logger/log.dart';
 import 'package:ugaoo/core/logger/model/logger_model.dart';
 import 'package:ugaoo/core/network/network.dart';

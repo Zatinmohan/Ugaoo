@@ -9,7 +9,7 @@ void _registerNetworkDependencies() {
         await environmentConfigManager.environmentConfig.networkConfig;
 
     return Network(
-      networkConfig: networkConfig,
+      networkConfig: networkConfig as EnvironmentNetworkConfig,
       packageInfoManager: packageInfoManager,
     );
   });
