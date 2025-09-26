@@ -15,6 +15,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   String? keyName;
+  String? keyName;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,9 +40,17 @@ class _HomeScreenState extends State<HomeScreen> {
               final x = await sl<RemoteConfigManager>()
                   .read<String>(
                     RemoteConfigKey.testKey,
+              final x = await sl<RemoteConfigManager>()
+                  .read<String>(
+                    RemoteConfigKey.testKey,
                   )
                   .run();
 
+              x.fold((_) {}, (r) {
+                setState(() {
+                  keyName = r;
+                });
+              });
               x.fold((_) {}, (r) {
                 setState(() {
                   keyName = r;
@@ -51,6 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: const Text('Read Example'),
           ),
           const SizedBox(height: 10),
+          Text(keyName ?? 'Nothing'),
           Text(keyName ?? 'Nothing'),
         ],
       ),
