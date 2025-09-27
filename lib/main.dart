@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
       title: 'Ugaoo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        hintColor: Color(0xfffffff),
       ),
       routerConfig: sl.get<RouterManager>().routerConfig,
     );

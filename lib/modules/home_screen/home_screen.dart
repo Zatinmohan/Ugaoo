@@ -28,7 +28,12 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () {
               context.pushNamed(Routes.second.name);
             },
-            child: const Text('Go to Second Screen'),
+            child: const Text(
+              'Go to Second Screen',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
           const SizedBox(height: 10),
         ],
