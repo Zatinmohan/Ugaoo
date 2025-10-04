@@ -109,10 +109,10 @@ class DarkThemeConfig extends ThemeConfig {
     ),
   );
 
-  /// Returns the complete set of design tokens for the DARK theme.
+  @override
   AppDesignToken get token => _token;
 
-  /// Returns the complete set of semantics for the DARK theme.
+  @override
   AppSemantics get semantics => _semantics;
 
   late final AppSemantics _semantics = AppSemantics(
