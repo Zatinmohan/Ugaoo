@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ugaoo/modules/app_core/extensions/router_extension.dart';
+import 'package:ugaoo/modules/app_core/config/route_config/router_extension.dart';
 
 class SecondScreen extends StatelessWidget {
   const SecondScreen({super.key});
