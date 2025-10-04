@@ -33,7 +33,7 @@ class FirebaseRemoteConfigHandler implements RemoteConfigHandleable {
       final values = await defaultValues();
       await _firebaseRemoteConfig.setConfigSettings(
         RemoteConfigSettings(
-          fetchTimeout: const Duration(minutes: 1),
+          fetchTimeout: const Duration(seconds: 5),
           minimumFetchInterval: const Duration(seconds: 1),
         ),
       );

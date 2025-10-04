@@ -8,7 +8,7 @@ class ColorToken extends AppToken {
   /// - [brown] is the brown color palette token
   /// - [yellow] is the yellow color palette token
   /// - [blue] is the blue color palette token
-  /// - [pink] is the pink color palette token
+  /// - [red] is the red color palette token
   /// - [neutral] is the neutral color palette token
   /// - [gray] is the gray color palette token
   ColorToken({
@@ -16,7 +16,7 @@ class ColorToken extends AppToken {
     required this.brown,
     required this.yellow,
     required this.blue,
-    required this.pink,
+    required this.red,
     required this.neutral,
     required this.gray,
   });
@@ -33,8 +33,8 @@ class ColorToken extends AppToken {
   /// Blue color palette token
   final ColorPaletteToken blue;
 
-  /// Pink color palette token
-  final ColorPaletteToken pink;
+  /// Red color palette token
+  final ColorPaletteToken red;
 
   /// Neutral color palette token
   final ColorPaletteToken neutral;

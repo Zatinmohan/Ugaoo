@@ -16,9 +16,8 @@ Future<void> _registerFirebaseServiceDependencies() async {
         );
 
         try {
-          await remoteConfigManager
-              .configure()
-              .timeout(const Duration(seconds: 1));
+          await remoteConfigManager.configure();
+
           log.i('Firebase Service Dependencies Registered');
         } on Exception catch (e, s) {
           log.e(
