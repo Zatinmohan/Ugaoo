@@ -3,21 +3,16 @@ import 'package:ugaoo/modules/app_core/design/extensions/design_extension.dart';
 import 'package:ugaoo/modules/app_core/design/models/semantics/semantics.dart';
 import 'package:ugaoo/modules/app_core/design/models/tokens/token.dart';
 
-/// [BuildContextExtension] is an extension on [BuildContext] that provides
+/// [DesignContextExtension] is an extension on [BuildContext] that provides
 /// a convenient way to access the app semantics.
-extension BuildContextExtension on BuildContext {
-  /// This method returns the screen width.
+extension DesignContextExtension on BuildContext {
+  /// This method returns the width of the screen.
   double get screenWidth => MediaQuery.sizeOf(this).width;
 
-  /// This method returns the screen height.
+  /// This method returns the height of the screen.
   double get screenHeight => MediaQuery.sizeOf(this).height;
 
-  /// This method returns the bottom padding.
-  double get bottomPadding => MediaQuery.paddingOf(this).bottom;
-
-  /// This method returns the top padding.
-  double get topPadding => MediaQuery.paddingOf(this).top;
-
+  /// This method returns the radius of the screen.
   /// This method returns the color semantics of the app.
   ///
   /// Returns the color semantics of the app.
