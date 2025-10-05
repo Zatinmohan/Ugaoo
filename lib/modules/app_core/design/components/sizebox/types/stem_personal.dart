@@ -1,6 +1,6 @@
 part of '../stem.dart';
 
-class _StemPersonal extends Stem {
+final class _StemPersonal extends Stem {
   const _StemPersonal(this.axis);
 
   final Axis axis;

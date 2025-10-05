@@ -1,6 +1,6 @@
 part of '../stem.dart';
 
-class _StemGlobal extends Stem {
+final class _StemGlobal extends Stem {
   const _StemGlobal(this.axis);
 
   final Axis axis;

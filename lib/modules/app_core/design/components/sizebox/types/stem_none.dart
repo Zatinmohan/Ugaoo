@@ -1,6 +1,6 @@
 part of '../stem.dart';
 
-class _StemNone extends Stem {
+final class _StemNone extends Stem {
   const _StemNone();
   @override
   Widget build(BuildContext context) {
