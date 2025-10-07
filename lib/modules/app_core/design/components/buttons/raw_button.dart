@@ -19,6 +19,7 @@ class RawButton extends StatefulWidget {
     required this.buttonRadius,
     required this.buttonColor,
     required this.buttonBorder,
+    required this.textStyle,
     this.isLoading = false,
     super.key,
   });
@@ -46,6 +47,9 @@ class RawButton extends StatefulWidget {
 
   /// The border of the button.
   final Border buttonBorder;
+
+  /// The text style of the button.
+  final TextStyle textStyle;
 
   @override
   State<RawButton> createState() => _RawButtonState();
@@ -141,12 +145,7 @@ class _RawButtonState extends State<RawButton> with TickerProviderStateMixin {
                     ),
                     child: Text(
                       widget.label,
-                      maxLines: 1,
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16,
-                      ),
+                      style: widget.textStyle,
                     ),
                   ),
                 ],

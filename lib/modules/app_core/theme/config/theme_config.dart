@@ -73,9 +73,9 @@ abstract class ThemeConfig {
 
   /// Returns the complete set of font letter spacing tokens for the theme.
   FontLetterSpacingToken get fontLetterSpacingToken => FontLetterSpacingToken(
-        loose: -0.25,
+        tight: -0.25,
         normal: 0,
-        tight: 0.25,
+        loose: 0.25,
       );
 
   /// Returns the complete set of typographic semantics for the theme.
@@ -85,7 +85,7 @@ abstract class ThemeConfig {
           fontWeight: FontWeight.w700,
           fontFamily: fontFamilyToken.title,
           height: fontLineHeightToken.height1,
-          letterSpacing: fontLetterSpacingToken.tight,
+          letterSpacing: fontLetterSpacingToken.loose,
         ),
         headline: TextStyle(
           fontSize: fontSizeToken.large,
@@ -116,8 +116,8 @@ abstract class ThemeConfig {
           letterSpacing: fontLetterSpacingToken.normal,
         ),
         label: TextStyle(
-          fontSize: fontSizeToken.xSmall,
-          fontWeight: FontWeight.w500,
+          fontSize: fontSizeToken.small,
+          fontWeight: FontWeight.w600,
           fontFamily: fontFamilyToken.body,
           height: fontLineHeightToken.height1,
           letterSpacing: fontLetterSpacingToken.normal,
@@ -127,7 +127,7 @@ abstract class ThemeConfig {
           fontWeight: FontWeight.w400,
           fontFamily: fontFamilyToken.body,
           height: fontLineHeightToken.height1,
-          letterSpacing: fontLetterSpacingToken.tight,
+          letterSpacing: fontLetterSpacingToken.loose,
         ),
       );
 }

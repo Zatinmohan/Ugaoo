@@ -11,6 +11,8 @@ final class _SecondaryButton extends Leaf {
   Widget build(BuildContext context) {
     return RawButton(
       label: label,
+      textStyle:
+          context.typographic.label.copyWith(color: context.color.primary),
       isLoading: isLoading,
       onPressed: onPressed,
       buttonSize: Size(

@@ -11,6 +11,10 @@ final class _LinkButton extends Leaf {
   Widget build(BuildContext context) {
     return RawButton(
       label: label,
+      textStyle: context.typographic.bodyMedium.copyWith(
+        color: context.color.textPrimary,
+        decoration: TextDecoration.underline,
+      ),
       onPressed: onPressed,
       buttonColor: Colors.transparent,
       buttonRadius: 0,

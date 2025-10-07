@@ -11,6 +11,9 @@ final class _PrimaryButton extends Leaf {
   Widget build(BuildContext context) {
     return RawButton(
       label: label,
+      textStyle: context.typographic.label.copyWith(
+        color: context.color.surface,
+      ),
       onPressed: onPressed,
       isLoading: isLoading,
       buttonSize: Size(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:ugaoo/modules/app_core/design/components/buttons/raw_button.dart';
+import 'package:ugaoo/modules/app_core/design/components/text/types/bud.dart';
 import 'package:ugaoo/modules/app_core/design/extensions/app_design_extension.dart';
 
 part 'primary_button.dart';

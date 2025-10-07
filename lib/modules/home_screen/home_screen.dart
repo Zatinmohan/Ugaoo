@@ -24,7 +24,20 @@ class _HomeScreenState extends State<HomeScreen> {
           spacing: 16,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Leaf.primary(label: 'Primary Button', onPressed: () {}),
+            Leaf.primary(
+                label: 'Primary Button',
+                isLoading: isLoading,
+                onPressed: () {
+                  setState(() {
+                    isLoading = !isLoading;
+                  });
+                }),
+            Leaf.secondary(
+              label: 'Secondary Button',
+              isLoading: isLoading,
+              onPressed: () {},
+            ),
+            Leaf.link(label: 'Link Button', onPressed: () {}),
             Bud.display(
               text: 'Display Text',
             ),
