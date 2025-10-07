@@ -1,6 +1,6 @@
 part of '../bud.dart';
 
-final class _Caption extends Bud with BudMixin {
+final class _Caption extends Bud with _BudMixin {
   const _Caption({
     required super.text,
     super.maxLines,

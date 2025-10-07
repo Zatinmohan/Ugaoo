@@ -1,11 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:ugaoo/modules/app_core/design/components/text/raw_text.dart';
-import 'package:ugaoo/modules/app_core/design/components/text/types/bud.dart';
-import 'package:ugaoo/modules/app_core/design/extensions/design_extension.dart';
+part of 'types/bud.dart';
 
-/// [BudMixin] is a mixin that provides the necessary methods
+/// [_BudMixin] is a mixin that provides the necessary methods
 /// to build a [Bud] widget.
-mixin BudMixin on Bud {
+mixin _BudMixin on Bud {
   /// This method resolves the style of the [Bud] widget.
   TextStyle resolveStyle(BuildContext context);
 

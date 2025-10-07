@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:ugaoo/modules/app_core/design/components/text/bud_mixin.dart';
 import 'package:ugaoo/modules/app_core/design/components/text/raw_text.dart';
 import 'package:ugaoo/modules/app_core/design/extensions/design_extension.dart';
+
+part '../bud_mixin.dart';
 
 part 'titles/display_bud.dart';
 part 'titles/headline_bud.dart';

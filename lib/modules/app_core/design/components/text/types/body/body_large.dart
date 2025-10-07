@@ -1,6 +1,6 @@
 part of '../bud.dart';
 
-final class _BodyLarge extends Bud with BudMixin {
+final class _BodyLarge extends Bud with _BudMixin {
   const _BodyLarge({
     required super.text,
     super.maxLines,

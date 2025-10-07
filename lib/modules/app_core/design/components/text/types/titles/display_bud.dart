@@ -1,6 +1,6 @@
 part of '../bud.dart';
 
-final class _DisplayBud extends Bud with BudMixin {
+final class _DisplayBud extends Bud with _BudMixin {
   const _DisplayBud({
     required super.text,
     super.maxLines = 1,

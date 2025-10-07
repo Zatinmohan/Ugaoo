@@ -1,6 +1,6 @@
 part of '../bud.dart';
 
-final class _Label extends Bud with BudMixin {
+final class _Label extends Bud with _BudMixin {
   const _Label({
     required super.text,
     super.maxLines,
