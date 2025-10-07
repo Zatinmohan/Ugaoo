@@ -19,7 +19,9 @@ class RawButton extends StatefulWidget {
     required this.buttonRadius,
     required this.buttonColor,
     required this.buttonBorder,
+    required this.textStyle,
     this.isLoading = false,
+    this.semanticLabel,
     super.key,
   });
 
@@ -46,6 +48,12 @@ class RawButton extends StatefulWidget {
 
   /// The border of the button.
   final Border buttonBorder;
+
+  /// The text style of the button.
+  final TextStyle textStyle;
+
+  /// The semantic label of the button.
+  final String? semanticLabel;
 
   @override
   State<RawButton> createState() => _RawButtonState();
@@ -97,61 +105,61 @@ class _RawButtonState extends State<RawButton> with TickerProviderStateMixin {
     // Determine if the button should be interactive.
     // final bool isDisabled = widget.isLoading || widget.onPressed == null;
 
-    return GestureDetector(
-      onTap: widget.onPressed,
-      child: AnimatedContainer(
-        width: widget.buttonSize.width == 0
-            ? null
-            : context.w(widget.buttonSize.width),
-        height: context.h(widget.buttonSize.height),
-        duration: const Duration(milliseconds: 300),
-        decoration: BoxDecoration(
-          color: widget.isLoading
-              ? widget.buttonColor.withValues(alpha: 0.9)
-              : widget.buttonColor,
-          borderRadius: BorderRadius.circular(context.i(widget.buttonRadius)),
-          border: widget.buttonBorder,
-        ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(context.i(widget.buttonRadius)),
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              Bloom(
-                duration: const Duration(milliseconds: 500),
-                child: widget.isLoading
-                    ? CustomPaint(
-                        painter: RawButtonCustomPainter(
-                          fillAnimation: fillAnimation,
-                          waveController: waveController,
-                          context: context,
-                        ),
-                        child: const SizedBox.expand(),
-                      )
-                    : Stem.none(),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.symmetric(
-                      horizontal: context.i(widget.padding.horizontal),
-                    ),
-                    child: Text(
-                      widget.label,
-                      maxLines: 1,
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16,
+    return Semantics(
+      button: true,
+      enabled: !widget.isLoading,
+      label: widget.semanticLabel,
+      child: GestureDetector(
+        onTap: widget.onPressed,
+        child: AnimatedContainer(
+          width: widget.buttonSize.width == 0
+              ? null
+              : context.w(widget.buttonSize.width),
+          height: context.h(widget.buttonSize.height),
+          duration: const Duration(milliseconds: 300),
+          decoration: BoxDecoration(
+            color: widget.isLoading
+                ? widget.buttonColor.withValues(alpha: 0.9)
+                : widget.buttonColor,
+            borderRadius: BorderRadius.circular(context.i(widget.buttonRadius)),
+            border: widget.buttonBorder,
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(context.i(widget.buttonRadius)),
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Bloom(
+                  duration: const Duration(milliseconds: 500),
+                  child: widget.isLoading
+                      ? CustomPaint(
+                          painter: RawButtonCustomPainter(
+                            fillAnimation: fillAnimation,
+                            waveController: waveController,
+                            context: context,
+                          ),
+                          child: const SizedBox.expand(),
+                        )
+                      : Stem.none(),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: context.i(widget.padding.horizontal),
+                      ),
+                      child: Text(
+                        widget.label,
+                        style: widget.textStyle,
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

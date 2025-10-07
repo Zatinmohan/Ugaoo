@@ -5,12 +5,17 @@ final class _PrimaryButton extends Leaf {
     required super.label,
     required super.onPressed,
     required super.isLoading,
+    super.semanticLabel,
   });
 
   @override
   Widget build(BuildContext context) {
     return RawButton(
       label: label,
+      semanticLabel: semanticLabel,
+      textStyle: context.typographic.label.copyWith(
+        color: context.color.surface,
+      ),
       onPressed: onPressed,
       isLoading: isLoading,
       buttonSize: Size(
@@ -21,9 +26,9 @@ final class _PrimaryButton extends Leaf {
         horizontal: context.padding.regular,
       ),
       buttonRadius: context.radius.large,
-      buttonColor: context.semantics.primary,
+      buttonColor: context.color.primary,
       buttonBorder: Border.all(
-        color: context.semantics.primary,
+        color: context.color.primary,
         width: context.thicknessToken.thickness1,
       ),
     );

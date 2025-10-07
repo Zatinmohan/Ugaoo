@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ugaoo/modules/app_core/design/models/semantics/color_semantics.dart';
-import 'package:ugaoo/modules/app_core/design/models/semantics/padding_semantic.dart';
-import 'package:ugaoo/modules/app_core/design/models/semantics/radius_semantic.dart';
-import 'package:ugaoo/modules/app_core/design/models/semantics/spacing_semantic.dart';
+import 'package:ugaoo/modules/app_core/design/models/semantics/semantics.dart';
 
 /// [AppSemanticExtension] is a class that extends [ThemeExtension] to provide
 /// the app semantics.
@@ -17,6 +14,7 @@ class AppSemanticExtension extends ThemeExtension<AppSemanticExtension> {
     required this.spacing,
     required this.padding,
     required this.radius,
+    required this.typographic,
   });
 
   @override
@@ -25,12 +23,14 @@ class AppSemanticExtension extends ThemeExtension<AppSemanticExtension> {
     SpacingSemantic? spacing,
     PaddingSemantic? padding,
     RadiusSemantic? radius,
+    TypographicSemantics? typographic,
   }) =>
       AppSemanticExtension(
         color: color ?? this.color,
         spacing: spacing ?? this.spacing,
         padding: padding ?? this.padding,
         radius: radius ?? this.radius,
+        typographic: typographic ?? this.typographic,
       );
 
   @override
@@ -50,4 +50,7 @@ class AppSemanticExtension extends ThemeExtension<AppSemanticExtension> {
 
   /// Radius semantics
   final RadiusSemantic radius;
+
+  /// Typographic semantics
+  final TypographicSemantics typographic;
 }
