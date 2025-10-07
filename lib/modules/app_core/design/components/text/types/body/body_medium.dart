@@ -1,6 +1,6 @@
 part of '../bud.dart';
 
-final class _BodyMedium extends Bud {
+final class _BodyMedium extends Bud with BudMixin {
   const _BodyMedium({
     required super.text,
     super.maxLines,
@@ -10,21 +10,17 @@ final class _BodyMedium extends Bud {
     super.decoration,
     super.textDirection,
     super.color,
+    super.isSelectable,
+    super.semanticLabel,
   });
 
   @override
+  TextStyle resolveStyle(BuildContext context) {
+    return context.typographic.bodyMedium;
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return RawText(
-      text: text,
-      style: context.typographic.bodyMedium.copyWith(
-        color: color ?? context.color.textPrimary,
-      ),
-      maxLines: maxLines,
-      overflow: overflow,
-      softWrap: softWrap,
-      textAlign: textAlign,
-      decoration: decoration,
-      textDirection: textDirection,
-    );
+    return buildText(context);
   }
 }

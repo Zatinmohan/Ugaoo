@@ -1,6 +1,6 @@
 part of '../bud.dart';
 
-final class _Caption extends Bud {
+final class _Caption extends Bud with BudMixin {
   const _Caption({
     required super.text,
     super.maxLines,
@@ -10,21 +10,17 @@ final class _Caption extends Bud {
     super.decoration,
     super.textDirection,
     super.color,
+    super.isSelectable,
+    super.semanticLabel,
   });
 
   @override
+  TextStyle resolveStyle(BuildContext context) {
+    return context.typographic.caption;
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return RawText(
-      text: text,
-      style: context.typographic.caption.copyWith(
-        color: color ?? context.color.textPrimary,
-      ),
-      maxLines: maxLines,
-      overflow: overflow,
-      softWrap: softWrap,
-      textAlign: textAlign,
-      decoration: decoration,
-      textDirection: textDirection,
-    );
+    return buildText(context);
   }
 }

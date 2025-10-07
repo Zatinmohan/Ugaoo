@@ -25,7 +25,9 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Leaf.primary(label: 'Primary Button', onPressed: () {}),
-            Bud.display(text: 'Display Text'),
+            Bud.display(
+              text: 'Display Text',
+            ),
             Bud.headline(text: 'Headline Text'),
             Bud.title(text: 'Title Text'),
             Bud.bodyLarge(text: 'Body Large Text'),

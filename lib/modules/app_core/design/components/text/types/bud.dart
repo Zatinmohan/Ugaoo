@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:ugaoo/modules/app_core/design/components/text/bud_mixin.dart';
 import 'package:ugaoo/modules/app_core/design/components/text/raw_text.dart';
 import 'package:ugaoo/modules/app_core/design/extensions/design_extension.dart';
 
@@ -17,14 +18,19 @@ part 'body/caption.dart';
 @sealed
 abstract class Bud extends StatelessWidget {
   /// Constructor of [Bud] that requires:
-  /// - [text] is the text to display in the text field.
-  /// - [color] is the color to display in the text field.
-  /// - [maxLines] is the max lines to display in the text field.
-  /// - [overflow] is the overflow to display in the text field.
-  /// - [softWrap] is the soft wrap to display in the text field.
+  /// - [text] is the text to display in the text.
+  /// - [color] is the color of the text.
+  /// - [maxLines] is the number of lines to display in the text.
+  /// - [overflow] configuration for the text if text overflows
+  /// from the given space.
+  /// - [softWrap] makes the text wrap.
   /// - [textAlign] is the text align to display in the text field.
-  /// - [decoration] is the decoration to display in the text field.
-  /// - [textDirection] is the text direction to display in the text field.
+  /// - [decoration] is the decoration of the text
+  /// [Underline, Overline, LineThrough].
+  /// - [textDirection] is the text direction.
+  /// - [isSelectable] makes the text selectable.
+  /// - [semanticLabel] is the semantics label that helps screen readers
+  /// to understand the text.
   const Bud({
     required this.text,
     super.key,
@@ -35,6 +41,8 @@ abstract class Bud extends StatelessWidget {
     this.textAlign,
     this.decoration,
     this.textDirection,
+    this.isSelectable = false,
+    this.semanticLabel,
   });
 
   /// Creates a display bud.
@@ -48,6 +56,8 @@ abstract class Bud extends StatelessWidget {
     TextDecoration? decoration,
     TextDirection? textDirection,
     Color? color,
+    bool isSelectable = false,
+    String? semanticLabel,
   }) =>
       _DisplayBud(
         text: text,
@@ -58,6 +68,8 @@ abstract class Bud extends StatelessWidget {
         decoration: decoration,
         textDirection: textDirection,
         color: color,
+        isSelectable: isSelectable,
+        semanticLabel: semanticLabel,
       );
 
   /// Creates a headline bud.
@@ -71,6 +83,8 @@ abstract class Bud extends StatelessWidget {
     TextDecoration? decoration,
     TextDirection? textDirection,
     Color? color,
+    bool isSelectable = false,
+    String? semanticLabel,
   }) =>
       _HeadlineBud(
         text: text,
@@ -81,6 +95,8 @@ abstract class Bud extends StatelessWidget {
         decoration: decoration,
         textDirection: textDirection,
         color: color,
+        isSelectable: isSelectable,
+        semanticLabel: semanticLabel,
       );
 
   /// Creates a title bud.
@@ -94,6 +110,8 @@ abstract class Bud extends StatelessWidget {
     TextDecoration? decoration,
     TextDirection? textDirection,
     Color? color,
+    bool isSelectable = false,
+    String? semanticLabel,
   }) =>
       _TitleBud(
         text: text,
@@ -104,6 +122,8 @@ abstract class Bud extends StatelessWidget {
         decoration: decoration,
         textDirection: textDirection,
         color: color,
+        isSelectable: isSelectable,
+        semanticLabel: semanticLabel,
       );
 
   /// Creates a body large bud.
@@ -117,6 +137,8 @@ abstract class Bud extends StatelessWidget {
     TextDecoration? decoration,
     TextDirection? textDirection,
     Color? color,
+    bool isSelectable = false,
+    String? semanticLabel,
   }) =>
       _BodyLarge(
         text: text,
@@ -127,6 +149,8 @@ abstract class Bud extends StatelessWidget {
         decoration: decoration,
         textDirection: textDirection,
         color: color,
+        isSelectable: isSelectable,
+        semanticLabel: semanticLabel,
       );
 
   /// Creates a body medium bud.
@@ -140,6 +164,8 @@ abstract class Bud extends StatelessWidget {
     TextDecoration? decoration,
     TextDirection? textDirection,
     Color? color,
+    bool isSelectable = false,
+    String? semanticLabel,
   }) =>
       _BodyMedium(
         text: text,
@@ -150,6 +176,8 @@ abstract class Bud extends StatelessWidget {
         decoration: decoration,
         textDirection: textDirection,
         color: color,
+        isSelectable: isSelectable,
+        semanticLabel: semanticLabel,
       );
 
   /// Creates a label bud.
@@ -163,6 +191,8 @@ abstract class Bud extends StatelessWidget {
     TextDecoration? decoration,
     TextDirection? textDirection,
     Color? color,
+    bool isSelectable = false,
+    String? semanticLabel,
   }) =>
       _Label(
         text: text,
@@ -173,6 +203,8 @@ abstract class Bud extends StatelessWidget {
         decoration: decoration,
         textDirection: textDirection,
         color: color,
+        isSelectable: isSelectable,
+        semanticLabel: semanticLabel,
       );
 
   /// Creates a caption bud.
@@ -186,6 +218,8 @@ abstract class Bud extends StatelessWidget {
     TextDecoration? decoration,
     TextDirection? textDirection,
     Color? color,
+    bool isSelectable = false,
+    String? semanticLabel,
   }) =>
       _Caption(
         text: text,
@@ -196,6 +230,8 @@ abstract class Bud extends StatelessWidget {
         decoration: decoration,
         textDirection: textDirection,
         color: color,
+        isSelectable: isSelectable,
+        semanticLabel: semanticLabel,
       );
 
   /// The text to display in the text field.
@@ -221,4 +257,10 @@ abstract class Bud extends StatelessWidget {
 
   /// The text direction to display in the text field.
   final TextDirection? textDirection;
+
+  /// The is selectable to display in the text field.
+  final bool isSelectable;
+
+  /// The semantics label to display in the text field.
+  final String? semanticLabel;
 }

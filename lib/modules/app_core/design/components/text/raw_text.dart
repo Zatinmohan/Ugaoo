@@ -12,6 +12,8 @@ class RawText extends StatelessWidget {
   /// - [textAlign] is the text align to display in the text field.
   /// - [decoration] is the decoration to display in the text field.
   /// - [textDirection] is the text direction to display in the text field.
+  /// - [isSelectable] is the is selectable to display in the text field.
+  /// - [semanticLabel] is the semantics label to display in the text field.
   const RawText({
     required this.text,
     super.key,
@@ -22,6 +24,8 @@ class RawText extends StatelessWidget {
     this.textAlign,
     this.decoration,
     this.textDirection,
+    this.isSelectable = false,
+    this.semanticLabel,
   });
 
   /// The text to display in the text field.
@@ -48,20 +52,36 @@ class RawText extends StatelessWidget {
   /// The text direction to display in the text field.
   final TextDirection? textDirection;
 
+  /// The is selectable to display in the text field.
+  final bool isSelectable;
+
+  /// The semantics label to display in the text field.
+  final String? semanticLabel;
+
   @override
   Widget build(BuildContext context) {
     final effectiveStyle = style?.copyWith(
       fontSize: style?.fontSize != null ? context.sp(style!.fontSize!) : null,
       decoration: decoration ?? style?.decoration,
     );
-    return Text(
-      text,
-      maxLines: maxLines,
-      overflow: overflow,
-      softWrap: softWrap,
-      textAlign: textAlign,
-      textDirection: textDirection,
-      style: effectiveStyle,
-    );
+    return isSelectable
+        ? SelectableText(
+            text,
+            maxLines: maxLines,
+            textAlign: textAlign,
+            textDirection: textDirection,
+            style: effectiveStyle,
+            semanticsLabel: semanticLabel,
+          )
+        : Text(
+            text,
+            maxLines: maxLines,
+            overflow: overflow,
+            softWrap: softWrap,
+            textAlign: textAlign,
+            textDirection: textDirection,
+            style: effectiveStyle,
+            semanticsLabel: semanticLabel,
+          );
   }
 }

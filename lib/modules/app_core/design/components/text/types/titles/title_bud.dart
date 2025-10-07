@@ -1,30 +1,26 @@
 part of '../bud.dart';
 
-final class _TitleBud extends Bud {
+final class _TitleBud extends Bud with BudMixin {
   const _TitleBud({
     required super.text,
-    super.maxLines,
+    super.maxLines = 1,
     super.overflow,
     super.softWrap,
     super.textAlign,
     super.decoration,
     super.textDirection,
     super.color,
+    super.isSelectable,
+    super.semanticLabel,
   });
 
   @override
+  TextStyle resolveStyle(BuildContext context) {
+    return context.typographic.title;
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return RawText(
-      text: text,
-      style: context.typographic.title.copyWith(
-        color: color ?? context.color.textPrimary,
-      ),
-      maxLines: maxLines,
-      overflow: overflow,
-      softWrap: softWrap,
-      textAlign: textAlign,
-      decoration: decoration,
-      textDirection: textDirection,
-    );
+    return buildText(context);
   }
 }
