@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ugaoo/modules/app_core/design/components/buttons/types/leaf.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -8,9 +9,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  var isLoading = false;
   @override
   Widget build(BuildContext context) {
-    final themeData = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Ugaoo'),
@@ -20,35 +21,28 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           spacing: 16,
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [],
+          children: [
+            Leaf.primary(
+              label: 'Primary Button',
+              onPressed: () {
+                setState(() {
+                  isLoading = !isLoading;
+                });
+              },
+              isLoading: isLoading,
+            ),
+            Leaf.secondary(
+              label: 'Secondary Button',
+              onPressed: () {},
+              isLoading: isLoading,
+            ),
+            Leaf.link(
+              label: 'Link Button',
+              onPressed: () {},
+            ),
+          ],
         ),
       ),
-    );
-  }
-}
-
-class _ColorBox extends StatelessWidget {
-  const _ColorBox({
-    required this.text,
-    required this.color,
-    super.key,
-  });
-  final String text;
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(text),
-        Container(
-          width: MediaQuery.sizeOf(context).width,
-          height: 100,
-          decoration: BoxDecoration(
-            color: color,
-          ),
-        ),
-      ],
     );
   }
 }
