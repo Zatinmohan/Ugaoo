@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:ugaoo/modules/app_core/design/components/buttons/raw_button.dart';
-import 'package:ugaoo/modules/app_core/design/components/text/types/bud.dart';
 import 'package:ugaoo/modules/app_core/design/extensions/app_design_extension.dart';
 
 part 'primary_button.dart';
@@ -20,6 +19,7 @@ abstract class Leaf extends StatelessWidget {
     required this.label,
     required this.onPressed,
     required this.isLoading,
+    this.semanticLabel,
     super.key,
   });
 
@@ -28,11 +28,13 @@ abstract class Leaf extends StatelessWidget {
     required String label,
     required VoidCallback onPressed,
     bool isLoading = false,
+    String? semanticLabel,
   }) =>
       _PrimaryButton(
         label: label,
         onPressed: onPressed,
         isLoading: isLoading,
+        semanticLabel: semanticLabel,
       );
 
   /// Creates a secondary button.
@@ -40,21 +42,25 @@ abstract class Leaf extends StatelessWidget {
     required String label,
     required VoidCallback onPressed,
     bool isLoading = false,
+    String? semanticLabel,
   }) =>
       _SecondaryButton(
         label: label,
         onPressed: onPressed,
         isLoading: isLoading,
+        semanticLabel: semanticLabel,
       );
 
   /// Creates a link button.
   factory Leaf.link({
     required String label,
     required VoidCallback onPressed,
+    String? semanticLabel,
   }) =>
       _LinkButton(
         label: label,
         onPressed: onPressed,
+        semanticLabel: semanticLabel,
       );
 
   /// The label of the button.
@@ -65,4 +71,7 @@ abstract class Leaf extends StatelessWidget {
 
   /// The is loading state of the button.
   final bool isLoading;
+
+  /// The semantic label of the button.
+  final String? semanticLabel;
 }

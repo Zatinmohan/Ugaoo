@@ -5,11 +5,13 @@ final class _LinkButton extends Leaf {
     required super.label,
     required super.onPressed,
     super.isLoading = false,
+    super.semanticLabel,
   });
 
   @override
   Widget build(BuildContext context) {
     return RawButton(
+      semanticLabel: semanticLabel,
       label: label,
       textStyle: context.typographic.bodyMedium.copyWith(
         color: context.color.textPrimary,
