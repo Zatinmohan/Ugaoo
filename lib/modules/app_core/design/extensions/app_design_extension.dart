@@ -16,7 +16,7 @@ extension DesignContextExtension on BuildContext {
   /// This method returns the color semantics of the app.
   ///
   /// Returns the color semantics of the app.
-  ColorSemantics get semantics =>
+  ColorSemantics get color =>
       Theme.of(this).extension<AppSemanticExtension>()!.color;
 
   /// This method returns the spacing semantics of the app.
@@ -50,4 +50,8 @@ extension DesignContextExtension on BuildContext {
   /// This method returns the font token of the app.
   FontToken get fontToken =>
       Theme.of(this).extension<AppTokenExtension>()!.fonts;
+
+  /// This method returns the typographic semantics of the app.
+  TypographicSemantics get typographic =>
+      Theme.of(this).extension<AppSemanticExtension>()!.typographic;
 }

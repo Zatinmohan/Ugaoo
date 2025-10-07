@@ -149,5 +149,6 @@ class DarkThemeConfig extends ThemeConfig {
       medium: token.radii.radius3,
       large: token.radii.radius5,
     ),
+    typographic: typographicSemantics,
   );
 }

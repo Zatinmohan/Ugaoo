@@ -64,6 +64,7 @@ class ChlorophyllCore {
             spacing: _darkThemeConfig.semantics.spacing,
             padding: _darkThemeConfig.semantics.padding,
             radius: _darkThemeConfig.semantics.radius,
+            typographic: _darkThemeConfig.semantics.typographic,
           ),
           AppTokenExtension(
             colors: _darkThemeConfig.token.colors,
@@ -109,6 +110,7 @@ class ChlorophyllCore {
             spacing: _lightThemeConfig.semantics.spacing,
             padding: _lightThemeConfig.semantics.padding,
             radius: _lightThemeConfig.semantics.radius,
+            typographic: _lightThemeConfig.semantics.typographic,
           ),
           AppTokenExtension(
             colors: _lightThemeConfig.token.colors,

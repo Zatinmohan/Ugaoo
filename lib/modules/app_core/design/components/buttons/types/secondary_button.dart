@@ -19,8 +19,8 @@ final class _SecondaryButton extends Leaf {
       ),
       padding: EdgeInsets.symmetric(horizontal: context.padding.regular),
       buttonRadius: context.radius.large,
-      buttonColor: context.semantics.surface,
-      buttonBorder: Border.all(color: context.semantics.primary),
+      buttonColor: context.color.surface,
+      buttonBorder: Border.all(color: context.color.primary),
     );
   }
 }

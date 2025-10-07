@@ -21,9 +21,9 @@ final class _PrimaryButton extends Leaf {
         horizontal: context.padding.regular,
       ),
       buttonRadius: context.radius.large,
-      buttonColor: context.semantics.primary,
+      buttonColor: context.color.primary,
       buttonBorder: Border.all(
-        color: context.semantics.primary,
+        color: context.color.primary,
         width: context.thicknessToken.thickness1,
       ),
     );

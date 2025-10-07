@@ -30,8 +30,8 @@ final class RawButtonCustomPainter extends CustomPainter {
     final paintBack = Paint()
       ..shader = LinearGradient(
         colors: [
-          context.semantics.accent.withValues(alpha: 0.3),
-          context.semantics.secondary.withValues(alpha: 0.4),
+          context.color.accent.withValues(alpha: 0.3),
+          context.color.secondary.withValues(alpha: 0.4),
         ],
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
@@ -40,8 +40,8 @@ final class RawButtonCustomPainter extends CustomPainter {
     final paintFront = Paint()
       ..shader = LinearGradient(
         colors: [
-          context.semantics.accent.withValues(alpha: 0.6),
-          context.semantics.secondary.withValues(alpha: 0.9),
+          context.color.accent.withValues(alpha: 0.6),
+          context.color.secondary.withValues(alpha: 0.9),
         ],
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,

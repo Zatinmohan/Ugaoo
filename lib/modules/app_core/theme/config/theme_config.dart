@@ -1,20 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ugaoo/modules/app_core/design/models/semantics/app_semantics.dart';
-import 'package:ugaoo/modules/app_core/design/models/semantics/color_semantics.dart';
-import 'package:ugaoo/modules/app_core/design/models/semantics/padding_semantic.dart';
-import 'package:ugaoo/modules/app_core/design/models/semantics/radius_semantic.dart';
-import 'package:ugaoo/modules/app_core/design/models/semantics/spacing_semantic.dart';
-import 'package:ugaoo/modules/app_core/design/models/tokens/app_design_token.dart';
-import 'package:ugaoo/modules/app_core/design/models/tokens/basic/radius_token.dart';
-import 'package:ugaoo/modules/app_core/design/models/tokens/basic/space_token.dart';
-import 'package:ugaoo/modules/app_core/design/models/tokens/basic/thickness_token.dart';
-import 'package:ugaoo/modules/app_core/design/models/tokens/color/color_palette_token.dart';
-import 'package:ugaoo/modules/app_core/design/models/tokens/color/color_token.dart';
-import 'package:ugaoo/modules/app_core/design/models/tokens/font/font_family_token.dart';
-import 'package:ugaoo/modules/app_core/design/models/tokens/font/font_letter_spacing_token.dart';
-import 'package:ugaoo/modules/app_core/design/models/tokens/font/font_line_height_token.dart';
-import 'package:ugaoo/modules/app_core/design/models/tokens/font/font_size_token.dart';
-import 'package:ugaoo/modules/app_core/design/models/tokens/font/font_token.dart';
+import 'package:ugaoo/modules/app_core/design/models/semantics/semantics.dart';
+import 'package:ugaoo/modules/app_core/design/models/tokens/token.dart';
 
 part 'light_theme_config.dart';
 part 'dark_theme_config.dart';
@@ -90,5 +76,58 @@ abstract class ThemeConfig {
         loose: -0.25,
         normal: 0,
         tight: 0.25,
+      );
+
+  /// Returns the complete set of typographic semantics for the theme.
+  TypographicSemantics get typographicSemantics => TypographicSemantics(
+        display: TextStyle(
+          fontSize: fontSizeToken.xLarge,
+          fontWeight: FontWeight.w700,
+          fontFamily: fontFamilyToken.title,
+          height: fontLineHeightToken.height1,
+          letterSpacing: fontLetterSpacingToken.loose,
+        ),
+        headline: TextStyle(
+          fontSize: fontSizeToken.xLarge,
+          fontWeight: FontWeight.w700,
+          fontFamily: fontFamilyToken.title,
+          height: fontLineHeightToken.height1,
+          letterSpacing: fontLetterSpacingToken.loose,
+        ),
+        title: TextStyle(
+          fontSize: fontSizeToken.large,
+          fontWeight: FontWeight.w600,
+          fontFamily: fontFamilyToken.title,
+          height: fontLineHeightToken.height1,
+          letterSpacing: fontLetterSpacingToken.normal,
+        ),
+        bodyLarge: TextStyle(
+          fontSize: fontSizeToken.medium,
+          fontWeight: FontWeight.w400,
+          fontFamily: fontFamilyToken.body,
+          height: fontLineHeightToken.height3,
+          letterSpacing: fontLetterSpacingToken.tight,
+        ),
+        bodyMedium: TextStyle(
+          fontSize: fontSizeToken.medium,
+          fontWeight: FontWeight.w400,
+          fontFamily: fontFamilyToken.body,
+          height: fontLineHeightToken.height3,
+          letterSpacing: fontLetterSpacingToken.tight,
+        ),
+        label: TextStyle(
+          fontSize: fontSizeToken.xSmall,
+          fontWeight: FontWeight.w500,
+          fontFamily: fontFamilyToken.body,
+          height: fontLineHeightToken.height1,
+          letterSpacing: fontLetterSpacingToken.normal,
+        ),
+        caption: TextStyle(
+          fontSize: fontSizeToken.xSmall,
+          fontWeight: FontWeight.w400,
+          fontFamily: fontFamilyToken.body,
+          height: fontLineHeightToken.height1,
+          letterSpacing: fontLetterSpacingToken.tight,
+        ),
       );
 }
