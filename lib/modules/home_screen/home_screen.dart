@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ugaoo/modules/app_core/design/components/buttons/types/leaf.dart';
 import 'package:ugaoo/modules/app_core/design/components/sizebox/stem.dart';
 import 'package:ugaoo/modules/app_core/design/components/text/types/bud.dart';
+import 'package:ugaoo/modules/app_core/design/components/text_field/types/root.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -47,6 +48,9 @@ class _HomeScreenState extends State<HomeScreen> {
             Bud.bodyMedium(text: 'Body Medium Text'),
             Bud.label(text: 'Label Text'),
             Bud.caption(text: 'Caption Text'),
+            Root(
+              hintText: 'Enter your text',
+            ),
           ],
         ),
       ),
