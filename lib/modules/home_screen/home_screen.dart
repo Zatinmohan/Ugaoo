@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ugaoo/modules/app_core/design/components/buttons/types/leaf.dart';
-import 'package:ugaoo/modules/app_core/design/components/sizebox/stem.dart';
+import 'package:ugaoo/modules/app_core/design/components/checkbox/types/sprout.dart';
 import 'package:ugaoo/modules/app_core/design/components/text/types/bud.dart';
 import 'package:ugaoo/modules/app_core/design/components/text_field/types/root.dart';
 
@@ -13,6 +13,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   var isLoading = false;
+  var isChecked = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,6 +51,14 @@ class _HomeScreenState extends State<HomeScreen> {
             Bud.caption(text: 'Caption Text'),
             Root(
               hintText: 'Enter your text',
+            ),
+            Sprout(
+              value: isChecked,
+              onChanged: (value) {
+                setState(() {
+                  isChecked = value ?? false;
+                });
+              },
             ),
           ],
         ),
