@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ugaoo/modules/app_core/design/components/buttons/types/leaf.dart';
 import 'package:ugaoo/modules/app_core/design/components/checkbox/types/sprout.dart';
+import 'package:ugaoo/modules/app_core/design/components/switcher/types/tendril.dart';
 import 'package:ugaoo/modules/app_core/design/components/text/types/bud.dart';
 import 'package:ugaoo/modules/app_core/design/components/text_field/types/root.dart';
 
@@ -57,6 +58,14 @@ class _HomeScreenState extends State<HomeScreen> {
               onChanged: (value) {
                 setState(() {
                   isChecked = value ?? false;
+                });
+              },
+            ),
+            Tendril(
+              value: isChecked,
+              onChanged: (value) {
+                setState(() {
+                  isChecked = value;
                 });
               },
             ),
