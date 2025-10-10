@@ -49,7 +49,6 @@ abstract class Root extends StatelessWidget {
     Widget? suffix,
     Widget? prefixIcon,
     Widget? suffixIcon,
-    InputDecoration Function(BuildContext, InputDecoration)? decorationBuilder,
   }) =>
       _DefaultRoot(
         RootConfig(
