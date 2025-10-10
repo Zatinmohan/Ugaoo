@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:ugaoo/modules/app_core/design/extensions/design_extension.dart';
+part of '../text_field/types/root.dart';
 
 /// RawTextField is an internal, token-aware wrapper around Material
 /// `TextFormField`, applying Ugaoo typography, colors, spacing, and borders

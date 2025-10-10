@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:ugaoo/modules/app_core/design/components/text_field/raw_text_field.dart';
-import 'package:ugaoo/modules/app_core/design/components/text_field/types/root.dart';
+part of '../text_field/types/root.dart';
 
 /// Mixin for the root text field
 mixin RootMixin on Root {

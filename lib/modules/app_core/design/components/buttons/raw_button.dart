@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:ugaoo/modules/app_core/design/components/buttons/raw_button_painter.dart';
-import 'package:ugaoo/modules/app_core/design/components/sizebox/stem.dart';
-import 'package:ugaoo/modules/app_core/design/extensions/design_extension.dart';
-import 'package:ugaoo/modules/app_core/design/widgets/custom_animated_switcher.dart';
+part of '../buttons/types/leaf.dart';
 
 /// [RawButton] is a class that extends [StatefulWidget] to create a
 /// liquid button.

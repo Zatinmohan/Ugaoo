@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ugaoo/modules/app_core/design/components/text_field/model/root_config.dart';
-import 'package:ugaoo/modules/app_core/design/components/text_field/root_mixin.dart';
+import 'package:ugaoo/modules/app_core/design/extensions/design_extension.dart';
 
+part '../raw_text_field.dart';
+part '../root_mixin.dart';
 part 'default_root.dart';
 
 /// [Root] is the base class for the root text field

@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:ugaoo/modules/app_core/design/extensions/design_extension.dart';
+part of '../text/types/bud.dart';
 
 /// [RawText] is a widget that displays a text with a given style.
 class RawText extends StatelessWidget {
