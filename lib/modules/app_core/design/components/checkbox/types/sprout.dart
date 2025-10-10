@@ -58,7 +58,7 @@ class Sprout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RawCheckbox(
+    return _RawCheckbox(
       value: value,
       onChanged: onChanged,
       semanticLabel: semanticLabel,

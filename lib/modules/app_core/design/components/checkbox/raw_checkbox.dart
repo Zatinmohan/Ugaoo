@@ -1,6 +1,6 @@
 part of '../checkbox/types/sprout.dart';
 
-/// [RawCheckbox] is a styled, primitive checkbox component
+/// [_RawCheckbox] is a styled, primitive checkbox component
 /// for the design system.
 ///
 /// This widget wraps Flutter's `Checkbox.adaptive` to provide a consistent
@@ -9,7 +9,7 @@ part of '../checkbox/types/sprout.dart';
 ///
 /// It's designed as a "controlled component," meaning its state (`value`) is
 /// managed by a parent widget and updated via the `onChanged` callback.
-class RawCheckbox extends StatelessWidget {
+class _RawCheckbox extends StatelessWidget {
   /// Creates a styled checkbox.
   ///
   /// * [value] determines whether the checkbox is checked.
@@ -18,7 +18,7 @@ class RawCheckbox extends StatelessWidget {
   ///   disabled.
   /// * [isError] can be set to `true` to display the checkbox in an error state,
   ///   which overrides other visual states.
-  const RawCheckbox({
+  const _RawCheckbox({
     required this.value,
     this.onChanged,
     this.semanticLabel,
