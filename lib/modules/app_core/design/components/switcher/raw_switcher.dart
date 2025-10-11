@@ -1,67 +1,88 @@
 part of 'types/tendril.dart';
 
-class _RawSwitcher extends StatelessWidget {
+/// Low-level, animated toggle used by all `Tendril` variants.
+///
+/// - Driven by generic type `T` via [currentValue] and [values].
+/// - Uses Ugaoo design tokens for color and interaction styling.
+/// - Interprets [height], [indicatorSize], [spacing] with `context.w`
+///   and [padding] with `context.i` for responsive scaling.
+/// - Supports [isLoading] and [semanticLabel] for UX and accessibility.
+class _RawSwitcher<T extends Object> extends StatelessWidget {
   const _RawSwitcher({
-    required this.value,
+    required this.currentValue,
+    required this.values,
+    this.padding,
     this.onChanged,
     this.semanticLabel,
+    this.isLoading = false,
+    this.height = 34,
+    this.indicatorSize = 24,
+    this.spacing = 4,
+    super.key,
   });
 
-  final bool value;
-  final ValueChanged<bool>? onChanged;
+  /// Current value of the toggle switch.
+  final T currentValue;
+
+  /// List of possible values for the switch.
+  final List<T> values;
+
+  /// Callback for when value is toggled.
+  final ValueChanged<T>? onChanged;
+
+  /// Optional accessibility label.
   final String? semanticLabel;
 
-  Color? _getOverlayColor(BuildContext context, Set<WidgetState> states) {
-    if (states.contains(WidgetState.hovered)) {
-      return context.color.primary.withValues(alpha: 0.08);
-    }
-    if (states.contains(WidgetState.pressed)) {
-      return context.color.primary.withValues(alpha: 0.12);
-    }
-    return null;
-  }
+  /// Optional loading state.
+  final bool isLoading;
 
-  Color _getThumbColor(BuildContext context, Set<WidgetState> states) {
-    if (states.contains(WidgetState.disabled)) {
-      return context.color.disabled.withValues(alpha: 0.7);
-    }
-    // If the switch is selected (ON), the thumb is the surface color (white).
-    if (states.contains(WidgetState.selected)) {
-      return context.color.surface;
-    }
-    // By default (OFF), the thumb is the standard disabled color.
-    return context.color.disabled;
-  }
+  /// The height of the switcher.
+  final double height;
 
-  Color _getTrackColor(BuildContext context, Set<WidgetState> states) {
-    if (states.contains(WidgetState.disabled)) {
-      return context.color.disabled.withValues(alpha: 0.1);
-    }
-    // If the switch is selected (ON), the track is the primary brand color.
-    if (states.contains(WidgetState.selected)) {
-      return context.color.primary;
-    }
-    // By default (OFF), the track is a subtle gray.
-    return context.color.disabled.withValues(alpha: 0.3);
+  /// The size of the indicator.
+  final double indicatorSize;
+
+  /// The spacing of the indicator.
+  final double spacing;
+
+  /// The padding of the switcher.
+  final EdgeInsetsGeometry? padding;
+
+  ToggleStyle _getToggleStyle(BuildContext context, bool selected) {
+    return ToggleStyle(
+      indicatorColor: selected
+          ? context.color.surface
+          : context.color.surface.withValues(alpha: 0.9),
+      backgroundColor: selected
+          ? context.color.primary
+          : context.color.disabled.withValues(alpha: 0.3),
+      borderColor: selected
+          ? context.color.primary.withValues(alpha: 0.4)
+          : context.color.disabled.withValues(alpha: 0.2),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Semantics(
-      toggled: value,
       label: semanticLabel,
-      child: Switch.adaptive(
-        value: value,
+      toggled: currentValue == values.last,
+      enabled: onChanged != null,
+      child: AnimatedToggleSwitch<T>.rolling(
+        loading: isLoading,
+        current: currentValue,
+        values: values,
         onChanged: onChanged,
-        overlayColor: WidgetStateProperty.resolveWith<Color?>(
-          (states) => _getOverlayColor(context, states),
+        indicatorTransition: const ForegroundIndicatorTransition.fading(),
+        height: context.w(height),
+        indicatorSize: Size.square(context.w(indicatorSize)),
+        animationDuration: const Duration(milliseconds: 250),
+        spacing: context.w(spacing),
+        padding: EdgeInsets.symmetric(
+          horizontal: context.i(padding?.horizontal ?? 0),
+          vertical: context.i(padding?.vertical ?? 0),
         ),
-        thumbColor: WidgetStateProperty.resolveWith<Color?>(
-          (states) => _getThumbColor(context, states),
-        ),
-        trackColor: WidgetStateProperty.resolveWith<Color?>(
-          (states) => _getTrackColor(context, states),
-        ),
+        styleBuilder: (value) => _getToggleStyle(context, value == values.last),
       ),
     );
   }
