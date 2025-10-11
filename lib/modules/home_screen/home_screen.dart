@@ -61,13 +61,35 @@ class _HomeScreenState extends State<HomeScreen> {
                 });
               },
             ),
-            Tendril(
-              value: isChecked,
-              onChanged: (value) {
-                setState(() {
-                  isChecked = value;
-                });
-              },
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: 14,
+              children: [
+                Tendril.small(
+                  value: isChecked,
+                  onChanged: (value) {
+                    setState(() {
+                      isChecked = value;
+                    });
+                  },
+                ),
+                Tendril.medium(
+                  value: isChecked,
+                  onChanged: (value) {
+                    setState(() {
+                      isChecked = value;
+                    });
+                  },
+                ),
+                Tendril.large(
+                  value: isChecked,
+                  onChanged: (value) {
+                    setState(() {
+                      isChecked = value;
+                    });
+                  },
+                ),
+              ],
             ),
           ],
         ),
