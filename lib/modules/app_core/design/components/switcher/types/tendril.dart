@@ -148,7 +148,8 @@ abstract class Tendril extends StatelessWidget {
   /// the switch will appear disabled and be non-interactable.
   final ValueChanged<bool>? onChanged;
 
-  /// Optional, descriptive label for assistive technologies (e.g. screen readers).
+  /// Optional, descriptive label for assistive technologies 
+  /// (e.g. screen readers).
   ///
   /// Keep this concise and contextual (e.g. "Receive notifications").
   final String? semanticLabel;
