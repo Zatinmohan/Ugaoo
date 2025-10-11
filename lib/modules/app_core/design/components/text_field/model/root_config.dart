@@ -47,6 +47,7 @@ class RootConfig {
     this.onSaved,
     this.helperText,
     this.style,
+    this.overrideSuffix = false,
   });
 
   /// Controls the editable text, selection, and composing region; when supplied
@@ -178,6 +179,9 @@ class RootConfig {
   /// Overrides or augments the base text style derived from design tokens
   final TextStyle? style;
 
+  /// Specifies the content padding for the field
+  final bool overrideSuffix;
+
   /// Returns a new instance with selectively overridden fields
   RootConfig copyWith({
     TextEditingController? controller,
@@ -220,6 +224,7 @@ class RootConfig {
     void Function(String?)? onSaved,
     String? helperText,
     TextStyle? style,
+    bool? overrideSuffix,
   }) {
     return RootConfig(
       controller: controller ?? this.controller,
@@ -262,6 +267,7 @@ class RootConfig {
       onSaved: onSaved ?? this.onSaved,
       helperText: helperText ?? this.helperText,
       style: style ?? this.style,
+      overrideSuffix: overrideSuffix ?? this.overrideSuffix,
     );
   }
 }

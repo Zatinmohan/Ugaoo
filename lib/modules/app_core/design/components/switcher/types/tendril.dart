@@ -59,7 +59,7 @@ abstract class Tendril extends StatelessWidget {
   /// Use for dense UI regions like lists or settings.
   factory Tendril.small({
     required bool value,
-    required ValueChanged<bool> onChanged,
+    ValueChanged<bool>? onChanged,
     Key? key,
     String? semanticLabel,
     bool isLoading = false,
@@ -78,7 +78,7 @@ abstract class Tendril extends StatelessWidget {
   /// spacing = `space1`, padding = `padding.condensed`.
   factory Tendril.medium({
     required bool value,
-    required ValueChanged<bool> onChanged,
+    ValueChanged<bool>? onChanged,
     String? semanticLabel,
     bool isLoading = false,
     Key? key,
@@ -97,7 +97,7 @@ abstract class Tendril extends StatelessWidget {
   /// spacing = `space2`, padding = `padding.condensed`.
   factory Tendril.large({
     required bool value,
-    required ValueChanged<bool> onChanged,
+    ValueChanged<bool>? onChanged,
     Key? key,
     String? semanticLabel,
     bool isLoading = false,
@@ -148,7 +148,7 @@ abstract class Tendril extends StatelessWidget {
   /// the switch will appear disabled and be non-interactable.
   final ValueChanged<bool>? onChanged;
 
-  /// Optional, descriptive label for assistive technologies 
+  /// Optional, descriptive label for assistive technologies
   /// (e.g. screen readers).
   ///
   /// Keep this concise and contextual (e.g. "Receive notifications").

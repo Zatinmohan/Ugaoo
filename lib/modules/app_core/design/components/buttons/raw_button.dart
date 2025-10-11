@@ -9,13 +9,14 @@ class RawButton extends StatefulWidget {
   /// - [isLoading] is the is loading state of the button.
   const RawButton({
     required this.label,
-    required this.onPressed,
     required this.buttonSize,
     required this.padding,
     required this.buttonRadius,
     required this.buttonColor,
     required this.buttonBorder,
     required this.textStyle,
+    required this.showDisableState,
+    this.onPressed,
     this.isLoading = false,
     this.semanticLabel,
     super.key,
@@ -25,7 +26,7 @@ class RawButton extends StatefulWidget {
   final String label;
 
   /// The on pressed callback of the button.
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   /// The is loading state of the button.
   final bool isLoading;
@@ -51,6 +52,9 @@ class RawButton extends StatefulWidget {
   /// The semantic label of the button.
   final String? semanticLabel;
 
+  /// The show disable state of the button.
+  final bool showDisableState;
+
   @override
   State<RawButton> createState() => _RawButtonState();
 }
@@ -66,17 +70,22 @@ class _RawButtonState extends State<RawButton> with TickerProviderStateMixin {
     waveController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 2),
-    )..repeat();
+    );
 
     fillController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 2),
-    )..repeat(reverse: true);
+    );
 
     fillAnimation = CurvedAnimation(
       parent: fillController,
       curve: Curves.easeInOutSine,
     );
+
+    if (widget.isLoading) {
+      waveController.repeat();
+      fillController.repeat(reverse: true);
+    }
   }
 
   @override
@@ -98,14 +107,36 @@ class _RawButtonState extends State<RawButton> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    // Determine if the button should be interactive.
-    // final bool isDisabled = widget.isLoading || widget.onPressed == null;
+    final isDisabled = widget.onPressed == null && widget.showDisableState;
+    final effectiveButtonColor = isDisabled
+        ? context.color.disabled.withValues(alpha: 0.3)
+        : (widget.isLoading
+            ? widget.buttonColor.withValues(alpha: 0.9)
+            : widget.buttonColor);
 
+    final effectiveBorder = isDisabled
+        ? Border.all(
+            color: context.color.disabled.withValues(alpha: 0.3),
+            width: widget.buttonBorder.top.width,
+          )
+        : widget.buttonBorder;
+
+    final effectiveTextStyle = isDisabled
+        ? widget.textStyle.copyWith(
+            color: context.color.disabled.withValues(alpha: 0.7),
+          )
+        : widget.textStyle;
+
+    final effectiveSplashColor = isDisabled
+        ? Colors.transparent
+        : effectiveButtonColor.withValues(alpha: 0.2);
     return Semantics(
       button: true,
-      enabled: !widget.isLoading,
+      enabled: !isDisabled,
       label: widget.semanticLabel,
-      child: GestureDetector(
+      child: InkWell(
+        splashColor: effectiveSplashColor,
+        borderRadius: BorderRadius.circular(context.i(widget.buttonRadius)),
         onTap: widget.onPressed,
         child: AnimatedContainer(
           width: widget.buttonSize.width == 0
@@ -114,11 +145,9 @@ class _RawButtonState extends State<RawButton> with TickerProviderStateMixin {
           height: context.h(widget.buttonSize.height),
           duration: const Duration(milliseconds: 300),
           decoration: BoxDecoration(
-            color: widget.isLoading
-                ? widget.buttonColor.withValues(alpha: 0.9)
-                : widget.buttonColor,
+            color: effectiveButtonColor,
             borderRadius: BorderRadius.circular(context.i(widget.buttonRadius)),
-            border: widget.buttonBorder,
+            border: effectiveBorder,
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(context.i(widget.buttonRadius)),
@@ -127,7 +156,7 @@ class _RawButtonState extends State<RawButton> with TickerProviderStateMixin {
               children: [
                 Bloom(
                   duration: const Duration(milliseconds: 500),
-                  child: widget.isLoading
+                  child: widget.isLoading && !isDisabled
                       ? CustomPaint(
                           painter: RawButtonCustomPainter(
                             fillAnimation: fillAnimation,
@@ -149,7 +178,7 @@ class _RawButtonState extends State<RawButton> with TickerProviderStateMixin {
                       ),
                       child: Text(
                         widget.label,
-                        style: widget.textStyle,
+                        style: effectiveTextStyle,
                       ),
                     ),
                   ],

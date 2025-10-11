@@ -3,8 +3,8 @@ part of 'leaf.dart';
 final class _PrimaryButton extends Leaf {
   const _PrimaryButton({
     required super.label,
-    required super.onPressed,
     required super.isLoading,
+    super.onPressed,
     super.semanticLabel,
   });
 
@@ -31,6 +31,7 @@ final class _PrimaryButton extends Leaf {
         color: context.color.primary,
         width: context.thicknessToken.thickness1,
       ),
+      showDisableState: true,
     );
   }
 }
