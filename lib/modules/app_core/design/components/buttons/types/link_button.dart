@@ -3,8 +3,7 @@ part of 'leaf.dart';
 final class _LinkButton extends Leaf {
   const _LinkButton({
     required super.label,
-    required super.onPressed,
-    super.isLoading = false,
+    super.onPressed,
     super.semanticLabel,
   });
 
@@ -28,6 +27,7 @@ final class _LinkButton extends Leaf {
         0,
         context.spaceToken.space6,
       ),
+      showDisableState: false,
     );
   }
 }

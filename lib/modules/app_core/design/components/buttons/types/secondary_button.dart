@@ -3,8 +3,8 @@ part of 'leaf.dart';
 final class _SecondaryButton extends Leaf {
   const _SecondaryButton({
     required super.label,
-    required super.onPressed,
     required super.isLoading,
+    super.onPressed,
     super.semanticLabel,
   });
 
@@ -25,6 +25,7 @@ final class _SecondaryButton extends Leaf {
       buttonRadius: context.radius.large,
       buttonColor: context.color.surface,
       buttonBorder: Border.all(color: context.color.primary),
+      showDisableState: true,
     );
   }
 }

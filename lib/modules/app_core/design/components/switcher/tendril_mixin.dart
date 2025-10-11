@@ -14,6 +14,7 @@ mixin _TendrilMixin on Tendril {
     required EdgeInsetsGeometry? padding,
   }) {
     return _RawSwitcher<bool>(
+      key: key,
       currentValue: value,
       values: const [false, true],
       onChanged: onChanged,

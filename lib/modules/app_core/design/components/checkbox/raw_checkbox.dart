@@ -23,7 +23,6 @@ class _RawCheckbox extends StatelessWidget {
     this.onChanged,
     this.semanticLabel,
     this.isError = false,
-    super.key,
   });
 
   /// The current state of the checkbox
@@ -99,9 +98,12 @@ class _RawCheckbox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Checkbox.adaptive(
+      key: key,
       value: value,
       onChanged: onChanged,
       semanticLabel: semanticLabel,
+      visualDensity: VisualDensity.compact,
+      isError: isError,
       fillColor: WidgetStateProperty.resolveWith<Color?>(
         (states) => _getFillColor(context, states),
       ),

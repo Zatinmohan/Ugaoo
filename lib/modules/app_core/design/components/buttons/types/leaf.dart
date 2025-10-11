@@ -21,8 +21,8 @@ abstract class Leaf extends StatelessWidget {
   /// - [isLoading] is the is loading state of the button.
   const Leaf({
     required this.label,
-    required this.onPressed,
-    required this.isLoading,
+    this.onPressed,
+    this.isLoading = false,
     this.semanticLabel,
     super.key,
   });
@@ -30,7 +30,7 @@ abstract class Leaf extends StatelessWidget {
   /// Creates a primary button.
   factory Leaf.primary({
     required String label,
-    required VoidCallback onPressed,
+    VoidCallback? onPressed,
     bool isLoading = false,
     String? semanticLabel,
   }) =>
@@ -44,7 +44,7 @@ abstract class Leaf extends StatelessWidget {
   /// Creates a secondary button.
   factory Leaf.secondary({
     required String label,
-    required VoidCallback onPressed,
+    VoidCallback? onPressed,
     bool isLoading = false,
     String? semanticLabel,
   }) =>
@@ -58,7 +58,7 @@ abstract class Leaf extends StatelessWidget {
   /// Creates a link button.
   factory Leaf.link({
     required String label,
-    required VoidCallback onPressed,
+    VoidCallback? onPressed,
     String? semanticLabel,
   }) =>
       _LinkButton(
@@ -71,7 +71,7 @@ abstract class Leaf extends StatelessWidget {
   final String label;
 
   /// The on pressed callback of the button.
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   /// The is loading state of the button.
   final bool isLoading;
