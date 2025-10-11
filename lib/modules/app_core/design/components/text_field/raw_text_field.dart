@@ -50,6 +50,7 @@ class RawTextField extends StatefulWidget {
     this.prefixIcon,
     this.suffixIcon,
     this.alignLabelWithHint,
+    this.overrideSuffix = false,
     super.key,
   });
 
@@ -182,11 +183,71 @@ class RawTextField extends StatefulWidget {
   /// Specifies the suffix icon for the field
   final Widget? suffixIcon;
 
+  /// Specifies the content padding for the field
+  final bool overrideSuffix;
+
   @override
   State<RawTextField> createState() => _RawTextFieldState();
 }
 
 class _RawTextFieldState extends State<RawTextField> {
+  late final VoidCallback _controllerListener;
+  var showSuffix = false;
+  @override
+  void initState() {
+    super.initState();
+    _controllerListener = _updateSuffixVisibility;
+    widget.controller?.addListener(_controllerListener);
+    // Set initial state
+    _updateSuffixVisibility();
+  }
+
+  @override
+  void didUpdateWidget(RawTextField oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // If the controller instance changes, update the listeners.
+    if (widget.controller != oldWidget.controller) {
+      oldWidget.controller?.removeListener(_controllerListener);
+      widget.controller?.addListener(_controllerListener);
+      // Update state for the new controller.
+      _updateSuffixVisibility();
+    }
+  }
+
+  void _updateSuffixVisibility() {
+    final shouldShow = widget.controller?.text.trim().isNotEmpty ?? false;
+    // Only call setState if the value has actually changed.
+    if (mounted && showSuffix != shouldShow) {
+      setState(() {
+        showSuffix = shouldShow;
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    // IMPORTANT: Remove the listener to prevent memory leaks.
+    widget.controller?.removeListener(_controllerListener);
+    super.dispose();
+  }
+
+  Widget get _buildSuffix {
+    if (widget.overrideSuffix) return widget.suffix ?? const SizedBox.shrink();
+    if (showSuffix) {
+      return GestureDetector(
+        onTap: () {
+          widget.controller?.clear();
+        },
+        child: Icon(
+          Icons.close,
+          size: 16,
+          color: context.color.primary,
+        ),
+      );
+    }
+    return const SizedBox.shrink();
+  }
+
   @override
   Widget build(BuildContext context) {
     final textStyle = context.typographic.bodyLarge
@@ -265,14 +326,10 @@ class _RawTextFieldState extends State<RawTextField> {
         errorBorder: errorBorder,
         focusedErrorBorder: errorBorder,
         disabledBorder: defaultBorder,
-        suffix: widget.suffix,
-        prefix: widget.prefix,
-        suffixIcon: widget.suffixIcon,
+
+        suffixIcon: _buildSuffix,
         prefixIcon: widget.prefixIcon,
-        contentPadding: EdgeInsets.symmetric(
-          horizontal: context.i(context.padding.regular),
-          vertical: context.i(context.padding.regular),
-        ),
+        contentPadding: EdgeInsets.all(context.i(context.padding.regular)),
       ),
     );
   }

@@ -4,6 +4,7 @@ import 'package:ugaoo/modules/app_core/design/components/checkbox/types/sprout.d
 import 'package:ugaoo/modules/app_core/design/components/sizebox/stem.dart';
 import 'package:ugaoo/modules/app_core/design/components/switcher/types/tendril.dart';
 import 'package:ugaoo/modules/app_core/design/components/text/types/bud.dart';
+import 'package:ugaoo/modules/app_core/design/components/text_field/types/root.dart';
 import 'package:ugaoo/modules/app_core/design/extensions/app_design_extension.dart';
 import 'package:ugaoo/modules/system_design_screen/model/system_design_screen_model.dart';
 
@@ -11,6 +12,7 @@ part 'types/font_variations.dart';
 part 'types/color_variations.dart';
 part 'types/switch_variation.dart';
 part 'types/button_variation.dart';
+part 'types/input_variation.dart';
 
 class SystemDesignScreen extends StatefulWidget {
   const SystemDesignScreen({super.key});
@@ -25,6 +27,7 @@ class _SystemDesignScreenState extends State<SystemDesignScreen> {
     SystemDesignScreenModel(name: 'Typography', widget: _TextVariations()),
     SystemDesignScreenModel(name: 'Switcher', widget: _SwitcherVariations()),
     SystemDesignScreenModel(name: 'Button', widget: _ButtonVariation()),
+    SystemDesignScreenModel(name: 'Input', widget: _InputVariation()),
   ];
 
   @override

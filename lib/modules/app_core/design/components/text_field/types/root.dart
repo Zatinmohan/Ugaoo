@@ -51,6 +51,7 @@ abstract class Root extends StatelessWidget {
     Widget? suffix,
     Widget? prefixIcon,
     Widget? suffixIcon,
+    bool overrideSuffix = false,
   }) =>
       _DefaultRoot(
         RootConfig(
@@ -94,6 +95,7 @@ abstract class Root extends StatelessWidget {
           suffix: suffix,
           prefixIcon: prefixIcon,
           suffixIcon: suffixIcon,
+          overrideSuffix: overrideSuffix,
         ),
       );
 
