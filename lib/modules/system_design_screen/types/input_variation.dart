@@ -12,8 +12,18 @@ class _InputVariation extends StatelessWidget {
         _Input(
           label: 'Default Text Field',
           input: Root(
-            controller: TextEditingController(),
+            controller: DefaultRootFieldController(
+              controller: TextEditingController(),
+            ),
             hintText: 'Hint Text',
+          ),
+        ),
+        _Input(
+          label: 'OTP Text Field',
+          input: Root.otp(
+            controller: OtpRootFieldController(
+              controller: TextEditingController(),
+            ),
           ),
         ),
       ],

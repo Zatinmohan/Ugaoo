@@ -5,7 +5,9 @@ mixin RootMixin on Root {
   /// Builds the text field
   Widget buildTextField(BuildContext context) {
     return RawTextField(
-      controller: config.controller,
+      controller: config.controller != null
+          ? (config.controller! as DefaultRootFieldController).controller
+          : null,
       focusNode: config.focusNode,
       validator: config.validator,
       onSaved: config.onSaved,
@@ -24,7 +26,7 @@ mixin RootMixin on Root {
       expands: config.expands,
       isEnabled: config.isEnabled,
       onChanged: config.onChanged,
-      onEditingComplete: config.onEditingComplete,
+      onEditingComplete: () => config.onEditingComplete?.call(null),
       onFieldSubmitted: config.onFieldSubmitted,
       onTap: config.onTap,
       onTapOutside: config.onTapOutside,

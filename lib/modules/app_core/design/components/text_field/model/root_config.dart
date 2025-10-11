@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:ugaoo/modules/app_core/design/components/text_field/model/root_field_controller.dart';
 
 @immutable
 
@@ -48,12 +49,14 @@ class RootConfig {
     this.helperText,
     this.style,
     this.overrideSuffix = false,
+    this.length,
+    this.isLoading = false,
   });
 
   /// Controls the editable text, selection, and composing region; when supplied
   /// it becomes the source of truth for
   /// the field’s value within `TextFormField`
-  final TextEditingController? controller;
+  final RootFieldController? controller;
 
   /// Manages focus requests and traversal, integrating with `FocusScope`
   final FocusNode? focusNode;
@@ -111,7 +114,7 @@ class RootConfig {
   final void Function(String?)? onChanged;
 
   /// Called when the field's editing is complete
-  final void Function()? onEditingComplete;
+  final void Function(String?)? onEditingComplete;
 
   /// Called when the field's value is submitted
   final void Function(String)? onFieldSubmitted;
@@ -182,9 +185,15 @@ class RootConfig {
   /// Specifies the content padding for the field
   final bool overrideSuffix;
 
+  /// Specifies the length for the OTP field
+  final int? length;
+
+  /// Specifies the loading state for the field
+  final bool isLoading;
+
   /// Returns a new instance with selectively overridden fields
   RootConfig copyWith({
-    TextEditingController? controller,
+    RootFieldController? controller,
     FocusNode? focusNode,
     bool? obscureText,
     bool? readOnly,
@@ -201,7 +210,7 @@ class RootConfig {
     bool? alignLabelWithHint,
     String? Function(String?)? validator,
     void Function(String?)? onChanged,
-    void Function()? onEditingComplete,
+    void Function(String?)? onEditingComplete,
     void Function(String)? onFieldSubmitted,
     void Function()? onTap,
     void Function(PointerDownEvent)? onTapOutside,
@@ -225,6 +234,7 @@ class RootConfig {
     String? helperText,
     TextStyle? style,
     bool? overrideSuffix,
+    bool? isLoading,
   }) {
     return RootConfig(
       controller: controller ?? this.controller,
@@ -268,6 +278,7 @@ class RootConfig {
       helperText: helperText ?? this.helperText,
       style: style ?? this.style,
       overrideSuffix: overrideSuffix ?? this.overrideSuffix,
+      isLoading: isLoading ?? this.isLoading,
     );
   }
 }
