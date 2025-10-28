@@ -51,6 +51,7 @@ class RootConfig {
     this.overrideSuffix = false,
     this.length,
     this.isLoading = false,
+    this.semanticLabel,
   });
 
   /// Controls the editable text, selection, and composing region; when supplied
@@ -191,6 +192,9 @@ class RootConfig {
   /// Specifies the loading state for the field
   final bool isLoading;
 
+  /// Specifies the semantic label for the field
+  final String? semanticLabel;
+
   /// Returns a new instance with selectively overridden fields
   RootConfig copyWith({
     RootFieldController? controller,
@@ -235,6 +239,7 @@ class RootConfig {
     TextStyle? style,
     bool? overrideSuffix,
     bool? isLoading,
+    String? semanticLabel,
   }) {
     return RootConfig(
       controller: controller ?? this.controller,
@@ -279,6 +284,7 @@ class RootConfig {
       style: style ?? this.style,
       overrideSuffix: overrideSuffix ?? this.overrideSuffix,
       isLoading: isLoading ?? this.isLoading,
+      semanticLabel: semanticLabel ?? this.semanticLabel,
     );
   }
 }

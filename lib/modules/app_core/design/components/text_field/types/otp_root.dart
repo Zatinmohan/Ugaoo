@@ -29,46 +29,60 @@ final class _OtpRoot extends Root {
         ),
       ),
     );
+    Widget otpField(BuildContext context) => Pinput(
+          controller: config.controller != null
+              ? (config.controller! as OtpRootFieldController).controller
+              : null,
+          length: config.length ?? 4,
+          showCursor: config.showCursor ?? true,
+          autofocus: config.autoFocus ?? false,
+          onChanged: config.onChanged,
+          onCompleted: config.onEditingComplete,
+          onTap: config.onTap,
+          onTapOutside: config.onTapOutside,
+          readOnly: config.readOnly ?? false,
+          focusNode: config.focusNode,
+          validator: config.validator,
+          keyboardType: config.keyboardType ?? TextInputType.number,
+          inputFormatters: config.inputFormatters ?? [],
+          textCapitalization:
+              config.textCapitalization ?? TextCapitalization.none,
+          textInputAction: config.textInputAction,
+          enabled: config.isEnabled ?? true,
+          defaultPinTheme: pinTheme,
+          focusedPinTheme: pinTheme.copyDecorationWith(
+            border: Border.all(color: focusedBorderColor, width: 1.5),
+          ),
+          errorPinTheme: pinTheme.copyDecorationWith(
+            border: Border.all(color: errorBorderColor, width: 1.5),
+          ),
+          submittedPinTheme: pinTheme.copyDecorationWith(
+            border: Border.all(color: context.color.primary, width: 1.5),
+            color: context.color.surface.withValues(alpha: 0.95),
+          ),
+          cursor: Container(
+            width: 2,
+            height: context.h(context.spaceToken.space5),
+            color: context.color.primary,
+          ),
+        );
     return Semantics(
       textField: true,
       enabled: !isDisabled,
-      // label: config.semanticLabel ?? 'OTP input field',
-      child: Pinput(
-        controller: config.controller != null
-            ? (config.controller! as OtpRootFieldController).controller
-            : null,
-        length: config.length ?? 4,
-        showCursor: config.showCursor ?? true,
-        autofocus: config.autoFocus ?? false,
-        onChanged: config.onChanged,
-        onCompleted: config.onEditingComplete,
-        onTap: config.onTap,
-        onTapOutside: config.onTapOutside,
-        readOnly: config.readOnly ?? false,
-        focusNode: config.focusNode,
-        validator: config.validator,
-        keyboardType: config.keyboardType ?? TextInputType.number,
-        inputFormatters: config.inputFormatters ?? [],
-        textCapitalization:
-            config.textCapitalization ?? TextCapitalization.none,
-        textInputAction: config.textInputAction,
-        enabled: config.isEnabled ?? true,
-        defaultPinTheme: pinTheme,
-        focusedPinTheme: pinTheme.copyDecorationWith(
-          border: Border.all(color: focusedBorderColor, width: 1.5),
-        ),
-        errorPinTheme: pinTheme.copyDecorationWith(
-          border: Border.all(color: errorBorderColor, width: 1.5),
-        ),
-        submittedPinTheme: pinTheme.copyDecorationWith(
-          border: Border.all(color: context.color.primary, width: 1.5),
-          color: context.color.surface.withValues(alpha: 0.95),
-        ),
-        cursor: Container(
-          width: 2,
-          height: context.h(context.spaceToken.space5),
-          color: context.color.primary,
-        ),
+      label: config.semanticLabel ?? 'OTP input field',
+      child: Stack(
+        children: [
+          otpField(context),
+          Bloom(
+            child: config.isLoading
+                ? ShimmerWidget(
+                    width: 100,
+                    height: 100,
+                    child: otpField(context),
+                  )
+                : Stem.none(),
+          ),
+        ],
       ),
     );
   }
