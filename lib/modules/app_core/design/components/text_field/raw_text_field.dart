@@ -192,7 +192,7 @@ class RawTextField extends StatefulWidget {
 
 class _RawTextFieldState extends State<RawTextField> {
   late final VoidCallback _controllerListener;
-  var showSuffix = false;
+  var _showSuffix = false;
   @override
   void initState() {
     super.initState();
@@ -217,9 +217,9 @@ class _RawTextFieldState extends State<RawTextField> {
   void _updateSuffixVisibility() {
     final shouldShow = widget.controller?.text.trim().isNotEmpty ?? false;
     // Only call setState if the value has actually changed.
-    if (mounted && showSuffix != shouldShow) {
+    if (mounted && _showSuffix != shouldShow) {
       setState(() {
-        showSuffix = shouldShow;
+        _showSuffix = shouldShow;
       });
     }
   }
@@ -233,7 +233,7 @@ class _RawTextFieldState extends State<RawTextField> {
 
   Widget get _buildSuffix {
     if (widget.overrideSuffix) return widget.suffix ?? const SizedBox.shrink();
-    if (showSuffix) {
+    if (_showSuffix) {
       return GestureDetector(
         onTap: () {
           widget.controller?.clear();
@@ -290,6 +290,7 @@ class _RawTextFieldState extends State<RawTextField> {
       maxLines: widget.maxLines,
       controller: widget.controller,
       validator: widget.validator,
+      
       onSaved: widget.onSaved,
       initialValue: widget.initialValue,
       focusNode: widget.focusNode,

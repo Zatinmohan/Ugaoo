@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:pinput/pinput.dart';
+import 'package:ugaoo/modules/app_core/design/components/sizebox/stem.dart';
 import 'package:ugaoo/modules/app_core/design/components/text_field/model/root_config.dart';
+import 'package:ugaoo/modules/app_core/design/components/text_field/model/root_field_controller.dart';
+import 'package:ugaoo/modules/app_core/design/components/widgets/shimmer.dart';
 import 'package:ugaoo/modules/app_core/design/extensions/design_extension.dart';
+import 'package:ugaoo/modules/app_core/design/widgets/custom_animated_switcher.dart';
 
 part '../raw_text_field.dart';
 part '../root_mixin.dart';
 part 'default_root.dart';
+part 'otp_root.dart';
 
 /// [Root] is the base class for the root text field
 abstract class Root extends StatelessWidget {
   /// Creates a [Root]
   factory Root({
-    TextEditingController? controller,
+    RootFieldController? controller,
     FocusNode? focusNode,
     bool? obscureText,
     bool? readOnly,
@@ -73,7 +79,7 @@ abstract class Root extends StatelessWidget {
           validator: validator,
           onSaved: onSaved,
           onChanged: onChanged,
-          onEditingComplete: onEditingComplete,
+          onEditingComplete: (value) => onEditingComplete?.call(),
           onFieldSubmitted: onFieldSubmitted,
           onTap: onTap,
           onTapOutside: onTapOutside,
@@ -98,6 +104,40 @@ abstract class Root extends StatelessWidget {
           overrideSuffix: overrideSuffix,
         ),
       );
+
+  /// Creates a [Root] for an OTP field
+  factory Root.otp({
+    RootFieldController? controller,
+    FocusNode? focusNode,
+    bool? isEnabled,
+    bool? autoFocus,
+    bool? showCursor,
+    int? length,
+    void Function(String?)? onChanged,
+    void Function(String?)? onEditingComplete,
+    void Function(String)? onFieldSubmitted,
+    void Function()? onTap,
+    void Function(PointerDownEvent)? onTapOutside,
+    TextInputType? keyboardType,
+    List<TextInputFormatter>? inputFormatters,
+    bool isLoading = false,
+  }) =>
+      _OtpRoot(RootConfig(
+        controller: controller,
+        focusNode: focusNode,
+        isEnabled: isEnabled,
+        autoFocus: autoFocus,
+        showCursor: showCursor,
+        length: length,
+        onChanged: onChanged,
+        onEditingComplete: onEditingComplete,
+        onFieldSubmitted: onFieldSubmitted,
+        onTap: onTap,
+        onTapOutside: onTapOutside,
+        keyboardType: keyboardType,
+        inputFormatters: inputFormatters,
+        isLoading: isLoading,
+      ));
 
   const Root._(this.config);
 
