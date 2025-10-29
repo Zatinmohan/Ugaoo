@@ -240,6 +240,7 @@ class RootConfig {
     bool? overrideSuffix,
     bool? isLoading,
     String? semanticLabel,
+    int? length,
   }) {
     return RootConfig(
       controller: controller ?? this.controller,
@@ -285,6 +286,7 @@ class RootConfig {
       overrideSuffix: overrideSuffix ?? this.overrideSuffix,
       isLoading: isLoading ?? this.isLoading,
       semanticLabel: semanticLabel ?? this.semanticLabel,
+      length: length ?? this.length,
     );
   }
 }

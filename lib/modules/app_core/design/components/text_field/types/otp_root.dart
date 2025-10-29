@@ -38,9 +38,9 @@ final class _OtpRoot extends Root {
           autofocus: config.autoFocus ?? false,
           onChanged: config.onChanged,
           onCompleted: config.onEditingComplete,
-          onTap: config.onTap,
-          onTapOutside: config.onTapOutside,
-          readOnly: config.readOnly ?? false,
+          onTap: config.isLoading ? null : config.onTap,
+          onTapOutside: config.isLoading ? null : config.onTapOutside,
+          readOnly: config.isLoading || (config.readOnly ?? false),
           focusNode: config.focusNode,
           validator: config.validator,
           keyboardType: config.keyboardType ?? TextInputType.number,
@@ -49,6 +49,7 @@ final class _OtpRoot extends Root {
               config.textCapitalization ?? TextCapitalization.none,
           textInputAction: config.textInputAction,
           enabled: config.isEnabled ?? true,
+          onSubmitted: config.isLoading ? null : config.onFieldSubmitted,
           defaultPinTheme: pinTheme,
           focusedPinTheme: pinTheme.copyDecorationWith(
             border: Border.all(color: focusedBorderColor, width: 1.5),
@@ -69,20 +70,11 @@ final class _OtpRoot extends Root {
     return Semantics(
       textField: true,
       enabled: !isDisabled,
+      identifier: 'otp_input_field',
       label: config.semanticLabel ?? 'OTP input field',
-      child: Stack(
-        children: [
-          otpField(context),
-          Bloom(
-            child: config.isLoading
-                ? ShimmerWidget(
-                    width: 100,
-                    height: 100,
-                    child: otpField(context),
-                  )
-                : Stem.none(),
-          ),
-        ],
+      child: ShimmerWidget(
+        isLoading: config.isLoading,
+        child: otpField(context),
       ),
     );
   }

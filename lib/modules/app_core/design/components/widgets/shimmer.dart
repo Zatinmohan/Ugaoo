@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:ugaoo/modules/app_core/design/components/sizebox/stem.dart';
 import 'package:ugaoo/modules/app_core/design/extensions/design_extension.dart';
+import 'package:ugaoo/modules/app_core/design/widgets/custom_animated_switcher.dart';
 
 // A responsive, theme-aware skeleton placeholder built on top of [FadeShimmer].
 ///
@@ -15,24 +17,18 @@ import 'package:ugaoo/modules/app_core/design/extensions/design_extension.dart';
 ///
 class ShimmerWidget extends StatelessWidget {
   /// Creates a shimmer placeholder with responsive sizing and optional colors.
-  ///
-  /// The [width], [height], and [duration] are specified in logical units and
-  /// scaled using `context.w`, `context.h`, and `context.r` respectively.
+  /// - [child] is the child widget to be shimmer.
+  /// - [highlightColor] is the color of the shimmer highlight.
+  /// - [baseColor] is the color of the shimmer base.
+  /// - [duration] is the duration of the shimmer animation.
   const ShimmerWidget({
-    required this.width,
-    required this.height,
     required this.child,
     this.highlightColor,
     this.baseColor,
     this.duration = const Duration(milliseconds: 1500),
+    this.isLoading = false,
     super.key,
   });
-
-  /// Target width before responsive scaling via `context.w`.
-  final double width;
-
-  /// Target height before responsive scaling via `context.h`.
-  final double height;
 
   /// Optional shimmer highlight color.
   /// If null, defaults to theme surface with 50% alpha.
@@ -48,14 +44,30 @@ class ShimmerWidget extends StatelessWidget {
   /// The duration of the shimmer animation.
   final Duration duration;
 
+  /// The loading state of the shimmer.
+  final bool isLoading;
+
   @override
   Widget build(BuildContext context) {
-    return Shimmer.fromColors(
-      highlightColor:
-          highlightColor ?? context.color.surface.withValues(alpha: 0.5),
-      baseColor: baseColor ?? context.color.disabled.withValues(alpha: 0.3),
-      period: duration,
-      child: child,
+    return Stack(
+      children: [
+        child,
+        IgnorePointer(
+          ignoring: isLoading,
+          child: Bloom(
+            child: isLoading
+                ? Shimmer.fromColors(
+                    highlightColor: highlightColor ??
+                        context.color.surface.withValues(alpha: 0.5),
+                    baseColor: baseColor ??
+                        context.color.disabled.withValues(alpha: 0.3),
+                    period: duration,
+                    child: child,
+                  )
+                : Stem.none(),
+          ),
+        ),
+      ],
     );
   }
 }

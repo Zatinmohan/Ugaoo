@@ -105,6 +105,7 @@ abstract class Root extends StatelessWidget {
         ),
       );
 
+  /// Creates a [Root] for an OTP field
   factory Root.otp({
     RootFieldController? controller,
     FocusNode? focusNode,
