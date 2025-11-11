@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pinput/pinput.dart';
-import 'package:ugaoo/modules/app_core/design/components/sizebox/stem.dart';
 import 'package:ugaoo/modules/app_core/design/components/text_field/model/root_config.dart';
 import 'package:ugaoo/modules/app_core/design/components/text_field/model/root_field_controller.dart';
 import 'package:ugaoo/modules/app_core/design/components/widgets/shimmer.dart';
 import 'package:ugaoo/modules/app_core/design/extensions/design_extension.dart';
-import 'package:ugaoo/modules/app_core/design/widgets/custom_animated_switcher.dart';
 
 part '../raw_text_field.dart';
 part '../root_mixin.dart';
 part 'default_root.dart';
 part 'otp_root.dart';
+part 'phone_field.dart';
+part 'country_code_dropdown_field.dart';
 
 /// [Root] is the base class for the root text field
 abstract class Root extends StatelessWidget {
@@ -137,6 +137,27 @@ abstract class Root extends StatelessWidget {
         keyboardType: keyboardType,
         inputFormatters: inputFormatters,
         isLoading: isLoading,
+      ));
+
+  /// Creates a [Root] for a phone field
+  factory Root.phone({
+    RootFieldController? controller,
+    FocusNode? focusNode,
+    bool? isEnabled,
+    bool? autoFocus,
+    bool? showCursor,
+  }) =>
+      _PhoneField(RootConfig(
+        controller: controller,
+        focusNode: focusNode,
+        isEnabled: isEnabled,
+        autoFocus: autoFocus,
+        showCursor: showCursor,
+        keyboardType: TextInputType.phone,
+        inputFormatters: [
+          FilteringTextInputFormatter.digitsOnly,
+        ],
+        prefixIcon: _CountryCodeDropdown(),
       ));
 
   const Root._(this.config);
