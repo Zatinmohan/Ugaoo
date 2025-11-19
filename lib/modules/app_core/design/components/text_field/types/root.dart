@@ -1,17 +1,29 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pinput/pinput.dart';
+import 'package:ugaoo/core/logger/logger.dart';
+import 'package:ugaoo/gen/assets.gen.dart';
+import 'package:ugaoo/modules/app_core/design/components/bottom_sheet/sheet.dart';
+import 'package:ugaoo/modules/app_core/design/components/buttons/types/leaf.dart';
+import 'package:ugaoo/modules/app_core/design/components/sizebox/stem.dart';
+import 'package:ugaoo/modules/app_core/design/components/switcher/types/tendril.dart';
+import 'package:ugaoo/modules/app_core/design/components/text/types/bud.dart';
 import 'package:ugaoo/modules/app_core/design/components/text_field/model/root_config.dart';
 import 'package:ugaoo/modules/app_core/design/components/text_field/model/root_field_controller.dart';
+import 'package:ugaoo/modules/app_core/design/components/text_field/types/phone_field/dtos/country_code_dto.dart';
+import 'package:ugaoo/modules/app_core/design/components/text_field/types/phone_field/extensions/country_code_extension.dart';
+import 'package:ugaoo/modules/app_core/design/components/text_field/types/phone_field/models/country_code_model.dart';
 import 'package:ugaoo/modules/app_core/design/components/widgets/shimmer.dart';
 import 'package:ugaoo/modules/app_core/design/extensions/design_extension.dart';
+import 'package:ugaoo/utilities/json_utility/json_utility.dart';
 
 part '../raw_text_field.dart';
 part '../root_mixin.dart';
 part 'default_root.dart';
 part 'otp_root.dart';
-part 'phone_field.dart';
-part 'country_code_dropdown_field.dart';
+part 'phone_field/widget/phone_field.dart';
+part 'phone_field/widget/country_code_dropdown_field.dart';
 
 /// [Root] is the base class for the root text field
 abstract class Root extends StatelessWidget {

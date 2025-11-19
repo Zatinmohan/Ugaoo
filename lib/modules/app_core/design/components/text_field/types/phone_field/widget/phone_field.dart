@@ -1,4 +1,4 @@
-part of 'root.dart';
+part of '../../root.dart';
 
 final class _PhoneField extends Root with RootMixin {
   const _PhoneField(super.config) : super._();

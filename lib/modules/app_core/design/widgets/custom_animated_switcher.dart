@@ -17,6 +17,7 @@ class Bloom extends StatelessWidget {
     this.switchInCurve = Curves.easeInOut,
     this.switchOutCurve = Curves.easeInOut,
     this.transitionBuilder,
+    this.layoutBuilder,
     super.key,
   });
 
@@ -35,6 +36,9 @@ class Bloom extends StatelessWidget {
   /// The transition builder of the animation.
   final Widget Function(Widget, Animation<double>)? transitionBuilder;
 
+  /// The layout builder of the animation.
+  final AnimatedSwitcherLayoutBuilder? layoutBuilder;
+
   /// The child widget to be animated.
   final Widget child;
   @override
@@ -44,6 +48,7 @@ class Bloom extends StatelessWidget {
       switchOutCurve: switchOutCurve,
       duration: duration,
       reverseDuration: reverseDuration,
+      layoutBuilder: layoutBuilder ?? AnimatedSwitcher.defaultLayoutBuilder,
       transitionBuilder: transitionBuilder ??
           (child, animation) =>
               FadeTransition(opacity: animation, child: child),

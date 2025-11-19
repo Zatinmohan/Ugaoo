@@ -19,11 +19,14 @@ class $AssetsDataGen {
 class $AssetsDataJsonGen {
   const $AssetsDataJsonGen();
 
+  /// File path: assets/data/json/country_code.json
+  String get countryCode => 'assets/data/json/country_code.json';
+
   /// File path: assets/data/json/network_env_config.json
   String get networkEnvConfig => 'assets/data/json/network_env_config.json';
 
   /// List of all assets
-  List<String> get values => [networkEnvConfig];
+  List<String> get values => [countryCode, networkEnvConfig];
 }
 
 class Assets {
