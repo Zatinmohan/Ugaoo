@@ -1,13 +1,11 @@
-import 'package:flutter/gestures.dart';
+import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pinput/pinput.dart';
 import 'package:ugaoo/core/logger/logger.dart';
 import 'package:ugaoo/gen/assets.gen.dart';
 import 'package:ugaoo/modules/app_core/design/components/bottom_sheet/sheet.dart';
-import 'package:ugaoo/modules/app_core/design/components/buttons/types/leaf.dart';
 import 'package:ugaoo/modules/app_core/design/components/sizebox/stem.dart';
-import 'package:ugaoo/modules/app_core/design/components/switcher/types/tendril.dart';
 import 'package:ugaoo/modules/app_core/design/components/text/types/bud.dart';
 import 'package:ugaoo/modules/app_core/design/components/text_field/model/root_config.dart';
 import 'package:ugaoo/modules/app_core/design/components/text_field/model/root_field_controller.dart';
@@ -158,6 +156,7 @@ abstract class Root extends StatelessWidget {
     bool? isEnabled,
     bool? autoFocus,
     bool? showCursor,
+    String? hintText,
   }) =>
       _PhoneField(RootConfig(
         controller: controller,
@@ -166,10 +165,11 @@ abstract class Root extends StatelessWidget {
         autoFocus: autoFocus,
         showCursor: showCursor,
         keyboardType: TextInputType.phone,
+        hintText: hintText ?? 'Enter your phone number',
         inputFormatters: [
           FilteringTextInputFormatter.digitsOnly,
         ],
-        prefixIcon: _CountryCodeDropdown(),
+        prefixIcon: const _CountryCodeDropdown(),
       ));
 
   const Root._(this.config);

@@ -9,6 +9,8 @@ class _CountryCodeDropdown extends StatefulWidget {
 
 class _CountryCodeDropdownState extends State<_CountryCodeDropdown> {
   late final List<CountryCodeModel> _countryCodes = [];
+  late final ValueNotifier<CountryCodeModel?> _selectedCountryCode =
+      ValueNotifier<CountryCodeModel?>(null);
 
   @override
   void initState() {
@@ -34,7 +36,15 @@ class _CountryCodeDropdownState extends State<_CountryCodeDropdown> {
       (data) {
         final result = CountryCodeDto.fromJson(data);
         _countryCodes.addAll(result.toModel());
+        _selectInitialCountryCode();
       },
+    );
+  }
+
+  void _selectInitialCountryCode() {
+    _selectedCountryCode.value = _countryCodes.firstWhere(
+      (code) => code.countryCode == 'IN',
+      orElse: () => _countryCodes.first,
     );
   }
 
@@ -45,13 +55,17 @@ class _CountryCodeDropdownState extends State<_CountryCodeDropdown> {
         await showSheet<void>(context,
             isScrollControlled: true,
             body: Padding(
-              padding: EdgeInsets.all(context.i(context.padding.compact)),
+              padding: EdgeInsets.all(context.i(context.padding.regular)),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Bud.title(text: 'Select country code'),
                   Stem.h.social(),
+                  Root(
+                    hintText: 'Search country code',
+                  ),
+                  Stem.h.public(),
                   Flexible(
                     child: ListView.builder(
                         itemCount: _countryCodes.length,
@@ -61,18 +75,35 @@ class _CountryCodeDropdownState extends State<_CountryCodeDropdown> {
                             padding: EdgeInsets.only(
                               bottom: context.i(context.spacing.social),
                             ),
-                            child: Row(
-                              children: [
-                                Bud.label(text: data.name),
-                                const Spacer(),
-                                Bud.label(text: data.dialCode),
-                              ],
+                            child: GestureDetector(
+                              behavior: HitTestBehavior.opaque,
+                              onTap: () {
+                                if (_selectedCountryCode.value?.countryCode !=
+                                    data.countryCode) {
+                                  _selectedCountryCode.value = data;
+                                }
+                                Navigator.pop(context);
+                              },
+                              child: Row(
+                                children: [
+                                  CountryFlag.fromCountryCode(
+                                    data.countryCode,
+                                    theme: ImageTheme(
+                                      width: context.w(24),
+                                      height: context.w(24),
+                                      shape: const Circle(),
+                                    ),
+                                  ),
+                                  Stem.h.social(),
+                                  Expanded(child: Bud.label(text: data.name)),
+                                  const Spacer(),
+                                  Bud.label(text: data.dialCode),
+                                ],
+                              ),
                             ),
                           );
                         }),
                   ),
-                  Stem.h.personal(),
-                  Leaf.primary(label: 'label', onPressed: () {}),
                 ],
               ),
             ));
@@ -80,7 +111,7 @@ class _CountryCodeDropdownState extends State<_CountryCodeDropdown> {
       child: Padding(
         padding: EdgeInsetsGeometry.only(
           left: context.i(1.5),
-          right: context.i(1),
+          right: context.i(1.2),
           top: context.i(1),
           bottom: context.i(1.3),
         ),
@@ -97,9 +128,36 @@ class _CountryCodeDropdownState extends State<_CountryCodeDropdown> {
               ),
             ),
           ),
-          width: context.w(60),
+          width: context.w(80),
           height: context.w(56),
-          child: const Icon(Icons.phone),
+          padding: EdgeInsets.symmetric(
+            horizontal: context.i(context.padding.compact),
+          ),
+          child: ValueListenableBuilder<CountryCodeModel?>(
+              valueListenable: _selectedCountryCode,
+              builder: (context, value, _) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CountryFlag.fromCountryCode(
+                      value?.countryCode ?? 'IN',
+                      theme: ImageTheme(
+                        width: context.w(16),
+                        height: context.w(16),
+                        shape: const Circle(),
+                      ),
+                    ),
+                    Stem.h.personal(),
+                    Flexible(
+                      child: FittedBox(
+                        child: Bud.title(
+                          text: value?.dialCode ?? '+91',
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              }),
         ),
       ),
     );
