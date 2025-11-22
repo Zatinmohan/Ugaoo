@@ -61,3 +61,5 @@ flutter:
   assets:
     - assets/data/json/
     - assets/data/translations/
+    - assets/images/dark/
+    - assets/images/light/

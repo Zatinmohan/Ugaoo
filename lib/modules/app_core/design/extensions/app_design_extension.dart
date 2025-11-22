@@ -16,6 +16,16 @@ extension DesignContextExtension on BuildContext {
   bool get isOnScreenNavigationPresent =>
       MediaQuery.systemGestureInsetsOf(this).bottom >= 40;
 
+  /// This method returns whether the app is in dark mode.
+  bool get isDarkTheme {
+    try {
+      return MediaQuery.maybePlatformBrightnessOf(this) == Brightness.dark;
+    } catch (_) {
+      /// ignore
+      return false;
+    }
+  }
+
   /// This method returns the radius of the screen.
   /// This method returns the color semantics of the app.
   ///
