@@ -54,8 +54,20 @@ class _InputVariationState extends State<_InputVariation> {
                   text: _isOtpFieldLoading ? 'Loading' : 'Not Loading',
                 ),
               ],
-            )
+            ),
           ],
+        ),
+        _Input(
+          label: 'Phone Text Field',
+          input: Root.phone(
+            controller: DefaultRootFieldController(
+              controller: TextEditingController(),
+            ),
+            hintText: 'Enter phone number',
+            searchCountryCode: (value) {
+              
+            },
+          ),
         ),
       ],
     );

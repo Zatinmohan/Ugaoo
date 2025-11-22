@@ -153,19 +153,22 @@ class _RawButtonState extends State<RawButton> with TickerProviderStateMixin {
             borderRadius: BorderRadius.circular(context.i(widget.buttonRadius)),
             child: Stack(
               alignment: Alignment.center,
+              fit: StackFit.expand,
               children: [
-                Bloom(
-                  duration: const Duration(milliseconds: 500),
-                  child: widget.isLoading && !isDisabled
-                      ? CustomPaint(
-                          painter: RawButtonCustomPainter(
-                            fillAnimation: fillAnimation,
-                            waveController: waveController,
-                            context: context,
-                          ),
-                          child: const SizedBox.expand(),
-                        )
-                      : Stem.none(),
+                Positioned.fill(
+                  child: Bloom(
+                    duration: const Duration(milliseconds: 500),
+                    child: widget.isLoading && !isDisabled
+                        ? CustomPaint(
+                            painter: RawButtonCustomPainter(
+                              fillAnimation: fillAnimation,
+                              waveController: waveController,
+                              context: context,
+                            ),
+                            child: const SizedBox.expand(),
+                          )
+                        : SizedBox.expand(),
+                  ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

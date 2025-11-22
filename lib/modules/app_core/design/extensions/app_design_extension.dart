@@ -12,6 +12,10 @@ extension DesignContextExtension on BuildContext {
   /// This method returns the height of the screen.
   double get screenHeight => MediaQuery.sizeOf(this).height;
 
+  /// This method returns whether the on-screen navigation is present.
+  bool get isOnScreenNavigationPresent =>
+      MediaQuery.systemGestureInsetsOf(this).bottom >= 40;
+
   /// This method returns the radius of the screen.
   /// This method returns the color semantics of the app.
   ///

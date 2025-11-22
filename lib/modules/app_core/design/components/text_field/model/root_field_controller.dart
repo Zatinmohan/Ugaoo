@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ugaoo/modules/app_core/design/components/text_field/types/phone_field/models/country_code_model.dart';
 
 /// Base controller for root text fields that can optionally expose an
 /// [AnimationController] for visual feedback (e.g., shake, highlight).
@@ -49,4 +50,22 @@ class OtpRootFieldController extends RootFieldController {
 
   /// Text controller backing the OTP field.
   final TextEditingController controller;
+}
+
+/// Controller for a phone number text field.
+class PhoneFieldController extends RootFieldController {
+  /// Creates a controller for a phone number text field requires:
+  /// - [selectedCountryCode] is the currently selected country code.
+  /// - [textController] is the text controller backing the phone number field.
+  PhoneFieldController({
+    required this.selectedCountryCode,
+    required this.textController,
+    super.animationController,
+  });
+
+  /// Currently selected country code.
+  final CountryCodeModel selectedCountryCode;
+
+  /// Text controller backing the phone number field.
+  final TextEditingController textController;
 }

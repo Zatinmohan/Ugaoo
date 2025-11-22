@@ -290,7 +290,6 @@ class _RawTextFieldState extends State<RawTextField> {
       maxLines: widget.maxLines,
       controller: widget.controller,
       validator: widget.validator,
-      
       onSaved: widget.onSaved,
       initialValue: widget.initialValue,
       focusNode: widget.focusNode,
@@ -330,6 +329,7 @@ class _RawTextFieldState extends State<RawTextField> {
 
         suffixIcon: _buildSuffix,
         prefixIcon: widget.prefixIcon,
+        prefix: widget.prefix,
         contentPadding: EdgeInsets.all(context.i(context.padding.regular)),
       ),
     );
