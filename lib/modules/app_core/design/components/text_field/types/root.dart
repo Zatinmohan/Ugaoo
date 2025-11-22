@@ -31,6 +31,7 @@ part 'phone_field/widget/picked_country_code_suffix_widget.dart';
 abstract class Root extends StatelessWidget {
   /// Creates a [Root]
   factory Root({
+    String? semanticLabel,
     RootFieldController? controller,
     FocusNode? focusNode,
     bool? obscureText,
@@ -75,6 +76,7 @@ abstract class Root extends StatelessWidget {
   }) =>
       _DefaultRoot(
         RootConfig(
+          semanticLabel: semanticLabel ?? 'Text Field',
           controller: controller,
           focusNode: focusNode,
           obscureText: obscureText,
@@ -121,6 +123,7 @@ abstract class Root extends StatelessWidget {
 
   /// Creates a [Root] for an OTP field
   factory Root.otp({
+    String? semanticLabel,
     RootFieldController? controller,
     FocusNode? focusNode,
     bool? isEnabled,
@@ -137,6 +140,7 @@ abstract class Root extends StatelessWidget {
     bool isLoading = false,
   }) =>
       _OtpRoot(RootConfig(
+        semanticLabel: semanticLabel ?? 'OTP Field',
         controller: controller,
         focusNode: focusNode,
         isEnabled: isEnabled,
@@ -155,6 +159,7 @@ abstract class Root extends StatelessWidget {
 
   /// Creates a [Root] for a phone field
   factory Root.phone({
+    String? semanticLabel,
     RootFieldController? controller,
     FocusNode? focusNode,
     bool? isEnabled,
@@ -167,6 +172,7 @@ abstract class Root extends StatelessWidget {
     TextInputAction? textInputAction,
   }) =>
       _PhoneField(RootConfig(
+        semanticLabel: semanticLabel ?? 'Phone Field',
         controller: controller,
         focusNode: focusNode,
         isEnabled: isEnabled,
