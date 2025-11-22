@@ -76,8 +76,8 @@ abstract class Petal extends StatelessWidget {
   /// Creates an asset image petal.
   factory Petal.asset(
     String assetPath, {
-    required double width,
-    required double height,
+    double? width,
+    double? height,
     String? semanticLabel,
     BoxFit fit = BoxFit.contain,
     FilterQuality filterQuality = FilterQuality.medium,
