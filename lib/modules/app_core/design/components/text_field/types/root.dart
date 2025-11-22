@@ -14,6 +14,8 @@ import 'package:ugaoo/modules/app_core/design/components/text_field/types/phone_
 import 'package:ugaoo/modules/app_core/design/components/text_field/types/phone_field/models/country_code_model.dart';
 import 'package:ugaoo/modules/app_core/design/components/widgets/shimmer.dart';
 import 'package:ugaoo/modules/app_core/design/extensions/design_extension.dart';
+import 'package:ugaoo/modules/app_core/localisation/localisation.dart'
+    as locale;
 import 'package:ugaoo/utilities/json_utility/json_utility.dart';
 import 'package:ugaoo/utilities/string_utility.dart';
 
@@ -140,7 +142,7 @@ abstract class Root extends StatelessWidget {
     bool isLoading = false,
   }) =>
       _OtpRoot(RootConfig(
-        semanticLabel: semanticLabel ?? 'OTP Field',
+        semanticLabel: semanticLabel ?? 'Otp Field',
         controller: controller,
         focusNode: focusNode,
         isEnabled: isEnabled,
@@ -179,7 +181,7 @@ abstract class Root extends StatelessWidget {
         autoFocus: autoFocus,
         showCursor: showCursor,
         keyboardType: TextInputType.phone,
-        hintText: hintText ?? 'Enter your phone number',
+        hintText: hintText ?? locale.LocaleKeys.phone_number_hint.tr(),
         inputFormatters: [
           FilteringTextInputFormatter.digitsOnly,
         ],

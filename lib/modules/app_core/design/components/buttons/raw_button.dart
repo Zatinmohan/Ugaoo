@@ -167,7 +167,7 @@ class _RawButtonState extends State<RawButton> with TickerProviderStateMixin {
                             ),
                             child: const SizedBox.expand(),
                           )
-                        : SizedBox.expand(),
+                        : const SizedBox.expand(),
                   ),
                 ),
                 Row(

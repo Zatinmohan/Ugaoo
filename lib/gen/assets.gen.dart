@@ -14,6 +14,10 @@ class $AssetsDataGen {
 
   /// Directory path: assets/data/json
   $AssetsDataJsonGen get json => const $AssetsDataJsonGen();
+
+  /// Directory path: assets/data/translations
+  $AssetsDataTranslationsGen get translations =>
+      const $AssetsDataTranslationsGen();
 }
 
 class $AssetsDataJsonGen {
@@ -27,6 +31,16 @@ class $AssetsDataJsonGen {
 
   /// List of all assets
   List<String> get values => [countryCode, networkEnvConfig];
+}
+
+class $AssetsDataTranslationsGen {
+  const $AssetsDataTranslationsGen();
+
+  /// File path: assets/data/translations/en-US.json
+  String get enUS => 'assets/data/translations/en-US.json';
+
+  /// List of all assets
+  List<String> get values => [enUS];
 }
 
 class Assets {
