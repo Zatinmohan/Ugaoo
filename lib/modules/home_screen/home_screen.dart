@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ugaoo/modules/system_design_screen/system_design_screen.dart';
+import 'package:ugaoo/modules/app_core/design/components/images/petal.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,7 +15,15 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text('Ugaoo'),
       ),
-      body: const SystemDesignScreen(),
+      body: Column(
+        children: [
+          Petal.network(
+            'https://images.unsplash.com/photo-1761839257658-23502c67f6d5?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+            width: 200,
+            height: 200,
+          ),
+        ],
+      ),
     );
   }
 }
