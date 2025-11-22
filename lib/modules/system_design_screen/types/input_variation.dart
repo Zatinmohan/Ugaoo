@@ -63,6 +63,10 @@ class _InputVariationState extends State<_InputVariation> {
             controller: DefaultRootFieldController(
               controller: TextEditingController(),
             ),
+            hintText: 'Enter phone number',
+            searchCountryCode: (value) {
+              
+            },
           ),
         ),
       ],

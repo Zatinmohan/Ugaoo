@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:ugaoo/modules/app_core/design/extensions/app_design_extension.dart';
+import 'package:stupid_simple_sheet/stupid_simple_sheet.dart';
+import 'package:ugaoo/modules/app_core/design/components/sizebox/stem.dart';
+import 'package:ugaoo/modules/app_core/design/components/widgets/blur_widget.dart';
+import 'package:ugaoo/modules/app_core/design/extensions/design_extension.dart';
 
 /// Displays a customizable modal bottom sheet with various
 /// configuration options.
@@ -18,53 +21,78 @@ Future<T?> showSheet<T>(
   BuildContext context, {
   required Widget body,
   Color? backgroundColor,
-  Color? barierColor,
+  Color? barrierColor,
   Clip? clipBehavior,
-  bool isScrollControlled = false,
   bool enableDrag = true,
   bool showDragHandler = true,
   bool isDismissible = true,
-  AnimationStyle? animationStyle,
-  AnimationController? animationController,
-  bool? requestFocus,
   bool useSafeArea = true,
-  bool wrapContent = false,
 }) async {
-  return showModalBottomSheet<T>(
-    context: context,
-    backgroundColor: backgroundColor ?? Theme.of(context).colorScheme.surface,
-    barrierColor: barierColor,
-    clipBehavior: clipBehavior,
-    isScrollControlled: isScrollControlled,
-    enableDrag: enableDrag,
-    showDragHandle: showDragHandler,
-    isDismissible: isDismissible,
-    sheetAnimationStyle: animationStyle,
-    transitionAnimationController: animationController,
-    requestFocus: requestFocus,
-    useSafeArea: useSafeArea,
-    builder: (sheetContext) {
-      return SafeArea(
-        top: false,
-        child: ConstrainedBox(
-          constraints: BoxConstraints(
-            maxHeight: isScrollControlled
-                ? sheetContext.screenHeight * 0.8
-                : sheetContext.screenHeight,
+  return Navigator.of(context).push(
+    StupidSimpleSheetRoute(
+      callNavigatorUserGestureMethods: true,
+      originateAboveBottomViewInset: true,
+      barrierDismissible: isDismissible,
+      clipBehavior: clipBehavior ?? Clip.antiAlias,
+      barrierColor:
+          barrierColor ?? context.color.disabled.withValues(alpha: 0.1),
+      draggable: enableDrag,
+      snappingConfig: SheetSnappingConfig.pixels(
+        [
+          context.screenHeight * 0.86,
+          context.screenHeight * 0.86,
+        ],
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadiusGeometry.only(
+          topLeft: Radius.circular(
+            context.r(context.radius.large),
           ),
-          child: wrapContent ? body : Align(child: body),
+          topRight: Radius.circular(
+            context.r(context.radius.large),
+          ),
         ),
-        // child: wrapContent
-        //     ? Align(
-        //         child: body,
-        //       )
-        //     : ConstrainedBox(
-        //         constraints: BoxConstraints(
-        //           maxHeight: sheetContext.screenHeight * 0.8,
-        //         ),
-        //         child: body,
-        //       ),
-      );
-    },
+      ),
+      child: Builder(builder: (context) {
+        return BlurWidget(
+          child: Material(
+            color:
+                backgroundColor ?? context.color.surface.withValues(alpha: 0.4),
+            animateColor: true,
+            clipBehavior: clipBehavior ?? Clip.antiAlias,
+            borderOnForeground: false,
+            child: SafeArea(
+              top: false,
+              bottom: useSafeArea,
+              maintainBottomViewPadding: useSafeArea,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (showDragHandler)
+                    Padding(
+                      padding: EdgeInsetsGeometry.only(
+                        top: context.i(context.spacing.social),
+                        bottom: context.i(context.spacing.personal),
+                      ),
+                      child: Container(
+                        width: context.w(48),
+                        height: context.w(6),
+                        decoration: BoxDecoration(
+                          color: context.color.disabled,
+                          borderRadius: BorderRadius.circular(
+                            context.radius.medium,
+                          ),
+                        ),
+                      ),
+                    ),
+                  Flexible(child: body),
+                  if (context.isOnScreenNavigationPresent) Stem.v.custom(88),
+                ],
+              ),
+            ),
+          ),
+        );
+      }),
+    ),
   );
 }

@@ -3,7 +3,7 @@ description: "A Green E-commerce App"
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.6.0 <4.0.0'
+  sdk: ">=3.6.0 <4.0.0"
 
 dependencies:
   animated_toggle_switch: ^0.8.5
@@ -30,6 +30,7 @@ dependencies:
   realm: ^20.1.1
   retrofit: ^4.7.2
   shared_preferences: ^2.5.3
+  stupid_simple_sheet: ^0.6.2+3
   talker: ^5.0.1
 
 dev_dependencies:
@@ -41,11 +42,10 @@ dev_dependencies:
   json_serializable: ^6.9.5
   very_good_analysis: ^9.0.0
 
-
 flutter:
   uses-material-design: true
 
-  fonts: 
+  fonts:
     - family: Poppins
       fonts:
         - asset: assets/fonts/Poppins-Bold.ttf

@@ -15,13 +15,17 @@ import 'package:ugaoo/modules/app_core/design/components/text_field/types/phone_
 import 'package:ugaoo/modules/app_core/design/components/widgets/shimmer.dart';
 import 'package:ugaoo/modules/app_core/design/extensions/design_extension.dart';
 import 'package:ugaoo/utilities/json_utility/json_utility.dart';
+import 'package:ugaoo/utilities/string_utility.dart';
 
 part '../raw_text_field.dart';
 part '../root_mixin.dart';
 part 'default_root.dart';
 part 'otp_root.dart';
-part 'phone_field/widget/phone_field.dart';
+part 'phone_field.dart';
+
 part 'phone_field/widget/country_code_dropdown_field.dart';
+part 'phone_field/widget/country_code_item.dart';
+part 'phone_field/widget/picked_country_code_suffix_widget.dart';
 
 /// [Root] is the base class for the root text field
 abstract class Root extends StatelessWidget {
@@ -157,6 +161,10 @@ abstract class Root extends StatelessWidget {
     bool? autoFocus,
     bool? showCursor,
     String? hintText,
+    void Function(String)? searchCountryCode,
+    void Function(String?)? onChanged,
+    void Function(String)? onFieldSubmitted,
+    TextInputAction? textInputAction,
   }) =>
       _PhoneField(RootConfig(
         controller: controller,
@@ -169,7 +177,12 @@ abstract class Root extends StatelessWidget {
         inputFormatters: [
           FilteringTextInputFormatter.digitsOnly,
         ],
-        prefixIcon: const _CountryCodeDropdown(),
+        prefixIcon: _CountryCodeDropdown(
+          onSearchCallback: searchCountryCode,
+        ),
+        onChanged: onChanged,
+        onFieldSubmitted: onFieldSubmitted,
+        textInputAction: textInputAction,
       ));
 
   const Root._(this.config);
