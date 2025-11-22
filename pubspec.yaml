@@ -10,7 +10,7 @@ dependencies:
   country_flags: ^4.1.0
   cupertino_icons: ^1.0.8
   dio: ^5.9.0
-  shimmer: ^3.0.0
+  easy_localization: ^3.0.8
   file_picker: ^10.3.3
   firebase_core: ^4.1.0
   firebase_remote_config: ^6.0.1
@@ -30,6 +30,7 @@ dependencies:
   realm: ^20.1.1
   retrofit: ^4.7.2
   shared_preferences: ^2.5.3
+  shimmer: ^3.0.0
   stupid_simple_sheet: ^0.6.2+3
   talker: ^5.0.1
 

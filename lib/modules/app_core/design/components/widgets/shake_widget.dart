@@ -18,7 +18,7 @@ import 'package:flutter/material.dart';
 /// - The [duration] parameter here is informational; it is not applied to the
 ///   provided controller. Keep them consistent to avoid confusion.
 ///
-class SCShakeWidget extends StatefulWidget {
+class ShakeWidget extends StatefulWidget {
   /// Parameters:
   /// - [child]: The widget to shake.
   /// - [animationController]: External controller; drives the
@@ -31,7 +31,7 @@ class SCShakeWidget extends StatefulWidget {
   /// - [shakeDirection]: Horizontal direction bias (default: left-to-right).
   /// - [duration]: Intended total duration of the shake; informational only.
   ///
-  const SCShakeWidget({
+  const ShakeWidget({
     required this.child,
     required this.animationController,
     this.shakeCounts = 4,
@@ -71,11 +71,11 @@ class SCShakeWidget extends StatefulWidget {
   final ShakeDirection shakeDirection;
 
   @override
-  State<SCShakeWidget> createState() => _SCShakeWidgetState();
+  State<ShakeWidget> createState() => _ShakeWidgetState();
 }
 
-class _SCShakeWidgetState extends State<SCShakeWidget>
-    with SingleTickerProviderStateMixin<SCShakeWidget> {
+class _ShakeWidgetState extends State<ShakeWidget>
+    with SingleTickerProviderStateMixin<ShakeWidget> {
   late Animation<double> animation;
 
   @override
