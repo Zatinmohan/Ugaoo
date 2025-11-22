@@ -6,6 +6,7 @@ import 'package:get_it/get_it.dart';
 import 'package:ugaoo/core/cache/cache_handler.dart';
 import 'package:ugaoo/core/environment/environment_config_manager.dart';
 import 'package:ugaoo/core/environment/environment_type.dart';
+import 'package:ugaoo/modules/app_core/localisation/localisation_handler.dart';
 import 'package:ugaoo/core/logger/log.dart';
 import 'package:ugaoo/core/logger/model/logger_model.dart';
 import 'package:ugaoo/core/network/network.dart';
@@ -28,6 +29,7 @@ part 'firebase_service_di.dart';
 part 'network_di.dart';
 part 'package_info_di.dart';
 part 'storage_di.dart';
+part 'localisation_di.dart';
 
 /// [sl] is the singleton instance of [GetIt]
 final GetIt sl = GetIt.instance;
@@ -41,6 +43,7 @@ class AppDependencyInjection {
   Future<void> registerCoreDependencies(String? flavor) async {
     try {
       await _registerFirebaseServiceDependencies();
+      _registerLocalisationDependencies();
       _registerAppFlavorDependencies(flavor: flavor);
       _registerPackageInfoDependencies();
       _registerRouterDependencies();

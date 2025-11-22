@@ -93,10 +93,11 @@ class _CountryCodeDropdownState extends State<_CountryCodeDropdown> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Bud.title(text: 'Select country code'),
+                  Bud.title(
+                      text: context.tr(locale.LocaleKeys.select_country_code)),
                   Stem.h.social(),
                   Root(
-                    hintText: 'Search country code',
+                    hintText: context.tr(locale.LocaleKeys.search_country_code),
                     controller: _searchController,
                     maxLines: 1,
                   ),
