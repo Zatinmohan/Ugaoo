@@ -51,6 +51,7 @@ class _LoginScreenState extends State<LoginScreen>
   Widget build(BuildContext context) {
     return ScaffoldWidget(
       resizeToAvoidBottomInset: true,
+      extendBody: true,
       body: Stack(
         children: [
           Petal.asset(
@@ -67,9 +68,9 @@ class _LoginScreenState extends State<LoginScreen>
             child: Container(
               width: context.screenWidth,
               decoration: BoxDecoration(
-                color: context.color.surface.withValues(alpha: 0.8),
+                color: context.color.surface.withValues(alpha: 0.5),
                 border: Border.all(
-                  color: context.color.surface.withValues(alpha: 0.8),
+                  color: context.color.surface.withValues(alpha: 0.5),
                   width: context.sp(0.5),
                 ),
                 borderRadius: BorderRadius.only(
