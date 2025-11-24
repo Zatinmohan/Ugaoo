@@ -42,6 +42,12 @@ class _LoginScreenState extends State<LoginScreen>
   }
 
   @override
+  void dispose() {
+    _phoneController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return ScaffoldWidget(
       resizeToAvoidBottomInset: true,

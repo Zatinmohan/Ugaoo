@@ -187,6 +187,7 @@ class RawTextField extends StatefulWidget {
   /// Specifies the content padding for the field
   final bool overrideSuffix;
 
+  /// Animation controller for the field
   final AnimationController? animationController;
 
   @override

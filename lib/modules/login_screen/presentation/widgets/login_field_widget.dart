@@ -23,6 +23,7 @@ class _LoginFieldWidget extends StatelessWidget {
           label: context.tr(LocaleKeys.continue_text),
           onPressed: () {
             if (phoneController.textController.text.isEmpty) {
+              phoneController.setError('Enter a valid number');
               phoneController.animationController!.reset();
               phoneController.animationController!.forward();
             }

@@ -8,17 +8,46 @@ import 'package:ugaoo/modules/app_core/design/components/text_field/types/phone_
 /// - Callers provide and own the lifecycle of [animationController].
 /// - Subclasses typically also carry a [TextEditingController] that must be
 ///   created and disposed by the caller (e.g., in a StatefulWidget).
-sealed class RootFieldController {
+sealed class RootFieldController extends ChangeNotifier {
   RootFieldController({
     required this.textController,
     this.animationController,
-  });
+  }) {
+    textController.addListener(_onTextChanged);
+  }
 
   /// Optional controller for animating UI feedback associated with the field.
   final AnimationController? animationController;
 
   /// Text controller backing the phone number field.
   final TextEditingController textController;
+
+  String? _errorText;
+
+  /// Error text associated with the field.
+  String? get errorText => _errorText;
+
+  /// Sets the error text associated with the field.
+  void setError(String? error) {
+    _errorText = error;
+    notifyListeners();
+  }
+
+  void _onTextChanged() {
+    if (_errorText != null) {
+      _errorText = null;
+      notifyListeners();
+    }
+  }
+
+  @override
+  void dispose() {
+    textController
+      ..removeListener(_onTextChanged)
+      ..dispose();
+    animationController?.dispose();
+    super.dispose();
+  }
 }
 
 /// Controller for a standard text field.
