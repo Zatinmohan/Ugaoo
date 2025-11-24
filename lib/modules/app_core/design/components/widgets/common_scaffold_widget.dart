@@ -78,6 +78,8 @@ class ScaffoldWidget extends StatelessWidget {
     return SafeArea(
       top: enableTopSafeArea ?? false,
       bottom: enableBottomSafeArea ?? false,
+      left: false,
+      right: false,
       child: Builder(builder: (context) {
         return MediaQuery(
           data: MediaQuery.of(context).copyWith(

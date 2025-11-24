@@ -52,6 +52,7 @@ class RootConfig {
     this.length,
     this.isLoading = false,
     this.semanticLabel,
+    this.animationController,
   });
 
   /// Controls the editable text, selection, and composing region; when supplied
@@ -195,6 +196,8 @@ class RootConfig {
   /// Specifies the semantic label for the field
   final String? semanticLabel;
 
+  final AnimationController? animationController;
+
   /// Returns a new instance with selectively overridden fields
   RootConfig copyWith({
     RootFieldController? controller,
@@ -241,6 +244,7 @@ class RootConfig {
     bool? isLoading,
     String? semanticLabel,
     int? length,
+    AnimationController? animationController,
   }) {
     return RootConfig(
       controller: controller ?? this.controller,
@@ -287,6 +291,7 @@ class RootConfig {
       isLoading: isLoading ?? this.isLoading,
       semanticLabel: semanticLabel ?? this.semanticLabel,
       length: length ?? this.length,
+      animationController: animationController ?? this.animationController,
     );
   }
 }

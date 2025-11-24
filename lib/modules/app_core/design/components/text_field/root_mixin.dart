@@ -6,17 +6,11 @@ part of '../text_field/types/root.dart';
 mixin RootMixin on Root {
   /// Builds the text field
   Widget buildTextField(BuildContext context) {
-    assert(
-      config.controller == null ||
-          config.controller is DefaultRootFieldController,
-      'RootMixin only supports DefaultRootFieldController. '
-      // ignore: lines_longer_than_80_chars
-      'If you are using a custom controller, please ensure it extends DefaultRootFieldController.',
-    );
     return RawTextField(
       controller: config.controller != null
-          ? (config.controller! as DefaultRootFieldController).controller
+          ? (config.controller!).textController
           : null,
+      animationController: config.controller?.animationController,
       focusNode: config.focusNode,
       validator: config.validator,
       onSaved: config.onSaved,

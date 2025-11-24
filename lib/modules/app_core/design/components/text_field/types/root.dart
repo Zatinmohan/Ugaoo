@@ -12,6 +12,7 @@ import 'package:ugaoo/modules/app_core/design/components/text_field/model/root_f
 import 'package:ugaoo/modules/app_core/design/components/text_field/types/phone_field/dtos/country_code_dto.dart';
 import 'package:ugaoo/modules/app_core/design/components/text_field/types/phone_field/extensions/country_code_extension.dart';
 import 'package:ugaoo/modules/app_core/design/components/text_field/types/phone_field/models/country_code_model.dart';
+import 'package:ugaoo/modules/app_core/design/components/widgets/shake_widget.dart';
 import 'package:ugaoo/modules/app_core/design/components/widgets/shimmer.dart';
 import 'package:ugaoo/modules/app_core/design/extensions/design_extension.dart';
 import 'package:ugaoo/modules/app_core/localisation/localisation.dart'
@@ -172,9 +173,12 @@ abstract class Root extends StatelessWidget {
     void Function(String?)? onChanged,
     void Function(String)? onFieldSubmitted,
     TextInputAction? textInputAction,
+    AnimationController? animationController,
+    String? errorText,
   }) =>
       _PhoneField(RootConfig(
         semanticLabel: semanticLabel ?? 'Phone Field',
+        errorText: errorText,
         controller: controller,
         focusNode: focusNode,
         isEnabled: isEnabled,
@@ -191,6 +195,7 @@ abstract class Root extends StatelessWidget {
         onChanged: onChanged,
         onFieldSubmitted: onFieldSubmitted,
         textInputAction: textInputAction,
+        animationController: animationController,
       ));
 
   const Root._(this.config);

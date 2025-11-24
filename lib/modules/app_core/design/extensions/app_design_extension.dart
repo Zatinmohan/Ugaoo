@@ -16,6 +16,10 @@ extension DesignContextExtension on BuildContext {
   bool get isOnScreenNavigationPresent =>
       MediaQuery.systemGestureInsetsOf(this).bottom >= 40;
 
+  /// This method returns the height of the on-screen navigation.
+  double get onScreenNavigationButtonHeight =>
+      MediaQuery.systemGestureInsetsOf(this).bottom;
+
   /// This method returns whether the app is in dark mode.
   bool get isDarkTheme {
     try {

@@ -51,6 +51,7 @@ class RawTextField extends StatefulWidget {
     this.suffixIcon,
     this.alignLabelWithHint,
     this.overrideSuffix = false,
+    this.animationController,
     super.key,
   });
 
@@ -186,6 +187,8 @@ class RawTextField extends StatefulWidget {
   /// Specifies the content padding for the field
   final bool overrideSuffix;
 
+  final AnimationController? animationController;
+
   @override
   State<RawTextField> createState() => _RawTextFieldState();
 }
@@ -274,64 +277,73 @@ class _RawTextFieldState extends State<RawTextField> {
     final effectiveTextStyle =
         widget.style != null ? textStyle.merge(widget.style) : textStyle;
 
-    return TextFormField(
-      enabled: widget.isEnabled,
-      autocorrect: widget.autoCorrect ?? true,
-      autovalidateMode: widget.autovalidateMode,
-      inputFormatters: widget.inputFormatters,
-      readOnly: widget.readOnly ?? false,
-      autofocus: widget.autoFocus ?? false,
-      showCursor: widget.showCursor,
-      selectAllOnFocus: widget.selectAllOnFocus,
-      maxLengthEnforcement: widget.maxLengthEnforcement,
-      expands: widget.expands ?? false,
-      maxLength: widget.maxLength,
-      minLines: widget.minLines,
-      maxLines: widget.maxLines,
-      controller: widget.controller,
-      validator: widget.validator,
-      onSaved: widget.onSaved,
-      initialValue: widget.initialValue,
-      focusNode: widget.focusNode,
-      keyboardType: widget.keyboardType,
-      obscureText: widget.obscureText ?? false,
-      textAlign: widget.textAlign ?? TextAlign.start,
-      textAlignVertical: widget.textAlignVertical,
-      onChanged: widget.onChanged,
-      onEditingComplete: widget.onEditingComplete,
-      onFieldSubmitted: widget.onFieldSubmitted,
-      onTap: widget.onTap,
-      onTapOutside: widget.onTapOutside,
-      textCapitalization: widget.textCapitalization ?? TextCapitalization.none,
-      textInputAction: widget.textInputAction,
-      textDirection: widget.textDirection,
-      style: effectiveTextStyle,
-      decoration: InputDecoration(
-        alignLabelWithHint: widget.alignLabelWithHint ?? (widget.maxLines != 1),
-        // text
-        labelText: widget.label,
-        hintText: widget.hintText,
-        helperText: widget.helperText,
-        errorText: widget.errorText,
-        // Apply styles
-        filled: true,
-        fillColor: context.color.surface,
-        hintStyle: hintStyle,
-        labelStyle: hintStyle, // Label uses the same style as hint
-        errorStyle: errorStyle,
-        // Apply borders
-        border: defaultBorder,
-        enabledBorder: defaultBorder,
-        focusedBorder: focusedBorder,
-        errorBorder: errorBorder,
-        focusedErrorBorder: errorBorder,
-        disabledBorder: defaultBorder,
+    Widget textField() => TextFormField(
+          enabled: widget.isEnabled,
+          autocorrect: widget.autoCorrect ?? true,
+          autovalidateMode: widget.autovalidateMode,
+          inputFormatters: widget.inputFormatters,
+          readOnly: widget.readOnly ?? false,
+          autofocus: widget.autoFocus ?? false,
+          showCursor: widget.showCursor,
+          selectAllOnFocus: widget.selectAllOnFocus,
+          maxLengthEnforcement: widget.maxLengthEnforcement,
+          expands: widget.expands ?? false,
+          maxLength: widget.maxLength,
+          minLines: widget.minLines,
+          maxLines: widget.maxLines,
+          controller: widget.controller,
+          validator: widget.validator,
+          onSaved: widget.onSaved,
+          initialValue: widget.initialValue,
+          focusNode: widget.focusNode,
+          keyboardType: widget.keyboardType,
+          obscureText: widget.obscureText ?? false,
+          textAlign: widget.textAlign ?? TextAlign.start,
+          textAlignVertical: widget.textAlignVertical,
+          onChanged: widget.onChanged,
+          onEditingComplete: widget.onEditingComplete,
+          onFieldSubmitted: widget.onFieldSubmitted,
+          onTap: widget.onTap,
+          onTapOutside: widget.onTapOutside,
+          textCapitalization:
+              widget.textCapitalization ?? TextCapitalization.none,
+          textInputAction: widget.textInputAction,
+          textDirection: widget.textDirection,
+          style: effectiveTextStyle,
+          decoration: InputDecoration(
+            alignLabelWithHint:
+                widget.alignLabelWithHint ?? (widget.maxLines != 1),
+            // text
+            labelText: widget.label,
+            hintText: widget.hintText,
+            helperText: widget.helperText,
+            errorText: widget.errorText,
+            // Apply styles
+            filled: true,
+            fillColor: context.color.surface,
+            hintStyle: hintStyle,
+            labelStyle: hintStyle, // Label uses the same style as hint
+            errorStyle: errorStyle,
+            // Apply borders
+            border: defaultBorder,
+            enabledBorder: defaultBorder,
+            focusedBorder: focusedBorder,
+            errorBorder: errorBorder,
+            focusedErrorBorder: errorBorder,
+            disabledBorder: defaultBorder,
 
-        suffixIcon: _buildSuffix,
-        prefixIcon: widget.prefixIcon,
-        prefix: widget.prefix,
-        contentPadding: EdgeInsets.all(context.i(context.padding.regular)),
-      ),
-    );
+            suffixIcon: _buildSuffix,
+            prefixIcon: widget.prefixIcon,
+            prefix: widget.prefix,
+            contentPadding: EdgeInsets.all(context.i(context.padding.regular)),
+          ),
+        );
+
+    return widget.animationController != null
+        ? ShakeWidget(
+            animationController: widget.animationController!,
+            child: textField(),
+          )
+        : textField();
   }
 }

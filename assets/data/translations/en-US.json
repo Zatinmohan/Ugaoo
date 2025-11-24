@@ -1,5 +1,13 @@
 {
     "phone_number_hint": "Enter your phone number",
     "select_country_code": "Select country",
-    "search_country_code": "Search country code"
+    "search_country_code": "Search country code",
+    "welcome": "Welcome",
+    "enter_your_phone_number": "Enter your phone number",
+    "verify_send_otp_message": "We'll send an OTP to verify your number",
+    "continue_text": "Continue",
+    "terms_of_service": "Terms of Service",
+    "privacy_policy": "Privacy Policy",
+    "terms_and_condition_message": "By continuing, you agree to our",
+    "skip": "Skip"
 }

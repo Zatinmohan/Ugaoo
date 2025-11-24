@@ -18,4 +18,11 @@ class CountryCodeModel {
 
   /// The dial code for the country.
   final String dialCode;
+
+  /// The default country code.
+  CountryCodeModel get defaultCountryCode => const CountryCodeModel(
+        name: 'India',
+        countryCode: 'IN',
+        dialCode: '+91',
+      );
 }

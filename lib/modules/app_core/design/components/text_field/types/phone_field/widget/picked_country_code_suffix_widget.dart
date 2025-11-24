@@ -12,7 +12,7 @@ class _PickedCountryCodeSuffixWidget extends StatelessWidget {
     return Container(
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
-        color: context.color.disabled.withValues(alpha: 0.5),
+        color: context.color.disabled.withValues(alpha: 0.3).withAlpha(150),
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(
             context.r(context.radius.large - 1),

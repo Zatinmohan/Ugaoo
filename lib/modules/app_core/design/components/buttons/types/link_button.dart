@@ -20,9 +20,7 @@ final class _LinkButton extends Leaf {
       buttonColor: Colors.transparent,
       buttonRadius: 0,
       buttonBorder: Border.all(color: Colors.transparent),
-      padding: EdgeInsetsGeometry.symmetric(
-        horizontal: context.padding.compact,
-      ),
+      padding: EdgeInsetsGeometry.zero,
       buttonSize: Size(
         0,
         context.spaceToken.space6,

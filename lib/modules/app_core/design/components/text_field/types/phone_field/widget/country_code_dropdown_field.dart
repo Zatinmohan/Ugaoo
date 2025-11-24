@@ -22,21 +22,21 @@ class _CountryCodeDropdownState extends State<_CountryCodeDropdown> {
     super.initState();
     _getCountryCodeData();
     _searchController = DefaultRootFieldController(
-      controller: TextEditingController(),
+      textController: TextEditingController(),
     );
-    _searchController.controller.addListener(_searchBarListener);
+    _searchController.textController.addListener(_searchBarListener);
   }
 
   @override
   void dispose() {
     _selectedCountryCode.dispose();
-    _searchController.controller.removeListener(_searchBarListener);
-    _searchController.controller.dispose();
+    _searchController.textController.removeListener(_searchBarListener);
+    _searchController.textController.dispose();
     super.dispose();
   }
 
   void _searchBarListener() {
-    final enteredText = _searchController.controller.text;
+    final enteredText = _searchController.textController.text;
 
     if (enteredText.isEmpty) {
       _countryCodeNotifier.value = List.from(_allCountryCodes);

@@ -153,7 +153,6 @@ class _RawButtonState extends State<RawButton> with TickerProviderStateMixin {
             borderRadius: BorderRadius.circular(context.i(widget.buttonRadius)),
             child: Stack(
               alignment: Alignment.center,
-              fit: StackFit.expand,
               children: [
                 Positioned.fill(
                   child: Bloom(

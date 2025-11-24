@@ -10,11 +10,15 @@ import 'package:ugaoo/modules/app_core/design/components/text_field/types/phone_
 ///   created and disposed by the caller (e.g., in a StatefulWidget).
 sealed class RootFieldController {
   RootFieldController({
+    required this.textController,
     this.animationController,
   });
 
   /// Optional controller for animating UI feedback associated with the field.
   final AnimationController? animationController;
+
+  /// Text controller backing the phone number field.
+  final TextEditingController textController;
 }
 
 /// Controller for a standard text field.
@@ -23,15 +27,10 @@ sealed class RootFieldController {
 /// allowing optional animations via the base [animationController].
 class DefaultRootFieldController extends RootFieldController {
   /// Creates a controller for a default text field.
-  ///
-  /// The caller owns and must dispose [controller].
   DefaultRootFieldController({
-    required this.controller,
+    required super.textController,
     super.animationController,
   });
-
-  /// Text controller backing the default text field.
-  final TextEditingController controller;
 }
 
 /// Controller for an OTP/PIN-style text field.
@@ -41,31 +40,22 @@ class DefaultRootFieldController extends RootFieldController {
 /// as appropriate for your OTP UI.
 class OtpRootFieldController extends RootFieldController {
   /// Creates a controller for an OTP/PIN text field.
-  ///
-  /// The caller owns and must dispose [controller].
   OtpRootFieldController({
-    required this.controller,
+    required super.textController,
     super.animationController,
   });
-
-  /// Text controller backing the OTP field.
-  final TextEditingController controller;
 }
 
 /// Controller for a phone number text field.
 class PhoneFieldController extends RootFieldController {
   /// Creates a controller for a phone number text field requires:
   /// - [selectedCountryCode] is the currently selected country code.
-  /// - [textController] is the text controller backing the phone number field.
   PhoneFieldController({
-    required this.selectedCountryCode,
-    required this.textController,
+    required super.textController,
+    this.selectedCountryCode,
     super.animationController,
   });
 
   /// Currently selected country code.
-  final CountryCodeModel selectedCountryCode;
-
-  /// Text controller backing the phone number field.
-  final TextEditingController textController;
+  final CountryCodeModel? selectedCountryCode;
 }

@@ -20,7 +20,7 @@ class _InputVariationState extends State<_InputVariation> {
           label: 'Default Text Field',
           input: Root(
             controller: DefaultRootFieldController(
-              controller: TextEditingController(),
+              textController: TextEditingController(),
             ),
             hintText: 'Hint Text',
           ),
@@ -33,7 +33,7 @@ class _InputVariationState extends State<_InputVariation> {
               input: Root.otp(
                 isLoading: _isOtpFieldLoading,
                 controller: OtpRootFieldController(
-                  controller: _otpController,
+                  textController: _otpController,
                 ),
               ),
             ),
@@ -60,13 +60,11 @@ class _InputVariationState extends State<_InputVariation> {
         _Input(
           label: 'Phone Text Field',
           input: Root.phone(
-            controller: DefaultRootFieldController(
-              controller: TextEditingController(),
+            controller: PhoneFieldController(
+              textController: TextEditingController(),
             ),
             hintText: 'Enter phone number',
-            searchCountryCode: (value) {
-              
-            },
+            searchCountryCode: (value) {},
           ),
         ),
       ],

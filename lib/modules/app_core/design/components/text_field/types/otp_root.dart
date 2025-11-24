@@ -31,7 +31,7 @@ final class _OtpRoot extends Root {
     );
     Widget otpField(BuildContext context) => Pinput(
           controller: config.controller != null
-              ? (config.controller! as OtpRootFieldController).controller
+              ? (config.controller! as OtpRootFieldController).textController
               : null,
           length: config.length ?? 4,
           showCursor: config.showCursor ?? true,
