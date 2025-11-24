@@ -173,7 +173,6 @@ abstract class Root extends StatelessWidget {
     void Function(String?)? onChanged,
     void Function(String)? onFieldSubmitted,
     TextInputAction? textInputAction,
-    AnimationController? animationController,
     String? errorText,
   }) =>
       _PhoneField(RootConfig(
@@ -195,7 +194,6 @@ abstract class Root extends StatelessWidget {
         onChanged: onChanged,
         onFieldSubmitted: onFieldSubmitted,
         textInputAction: textInputAction,
-        animationController: animationController,
       ));
 
   const Root._(this.config);

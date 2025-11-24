@@ -16,7 +16,6 @@ class _LoginFieldWidget extends StatelessWidget {
         Root.phone(
           semanticLabel: 'Phone Field',
           controller: phoneController,
-          animationController: phoneController.animationController,
         ),
         Stem.h.social(),
         Leaf.primary(

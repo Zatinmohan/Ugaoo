@@ -9,6 +9,7 @@ import 'package:ugaoo/modules/app_core/design/components/text_field/types/root.d
 import 'package:ugaoo/modules/app_core/design/components/widgets/blur_widget.dart';
 import 'package:ugaoo/modules/app_core/design/components/widgets/common_scaffold_widget.dart';
 import 'package:ugaoo/modules/app_core/design/components/widgets/dot_widget.dart';
+import 'package:ugaoo/modules/app_core/design/extensions/app_design_widget_extension.dart';
 import 'package:ugaoo/modules/app_core/design/extensions/design_extension.dart';
 import 'package:ugaoo/modules/app_core/localisation/localisation.dart';
 
@@ -87,23 +88,20 @@ class _LoginScreenState extends State<LoginScreen>
                       top: context.i(context.padding.relaxed),
                       bottom: context.i(context.padding.compact),
                     ),
-                    child: SafeArea(
-                      top: false,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const _LoginInfoWidget(),
-                          Stem.h.social(),
-                          _LoginFieldWidget(phoneController: _phoneController),
-                          Stem.h.social(),
-                          _LoginTermsAndServiceWidget(
-                            onTermsOfServiceTap: () {},
-                            onPrivacyPolicyTap: () {},
-                          ),
-                        ],
-                      ),
-                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const _LoginInfoWidget(),
+                        Stem.h.social(),
+                        _LoginFieldWidget(phoneController: _phoneController),
+                        Stem.h.social(),
+                        _LoginTermsAndServiceWidget(
+                          onTermsOfServiceTap: () {},
+                          onPrivacyPolicyTap: () {},
+                        ),
+                      ],
+                    ).supportOnScreenNavigationButtonWidget(),
                   ),
                 ),
               ),
